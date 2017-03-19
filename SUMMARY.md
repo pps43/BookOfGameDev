@@ -4,7 +4,8 @@
 * [缘起](README.md)
 ----
 ## 一、术
-* [开发语言](Game Code/README.md)
+* [逻辑代码](Game Code/README.md)
+ * [游戏设计模式](Game Code/Game Programming Pattern/README.md)
 
 * [学习Unity](Unity Learning/README.md)
  * [开发环境](Unity Learning/IDE/README.md)
