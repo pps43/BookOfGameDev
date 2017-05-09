@@ -15,4 +15,4 @@
   简易实用，可以快速浏览。
   
 # 文章目录
-- 我的Lua语言学习笔记
+- [我的Lua语言学习笔记](Lua/Lua Language/First Notes About Lua.md)
