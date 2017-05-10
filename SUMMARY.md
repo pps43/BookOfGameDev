@@ -1,5 +1,5 @@
-## 零
-* [缘起](README.md)
+## 零、缘
+* [为什么会有此书](README.md)
 
 ## 一、术
 ### 逻辑代码
@@ -18,7 +18,7 @@
  * [Unity Shader](Unity Learning/Rendering/Unity Shader/README.md)
     * essay
 
-### [结合Lua开发
+### 结合Lua开发
 * [导言](Lua/README.md)
 * [Lua语言介绍](Lua/Lua Language/README.md)
   * [Lua学习笔记](Lua/Lua Language/First Notes About Lua.md)
