@@ -1,14 +1,14 @@
-# 零
-
-[缘起](README.md)
+## 零
+* [缘起](README.md)
 
 ## 一、术
-
-### [逻辑代码](Game Code/README.md)
-  * [游戏设计模式](Game Code/Game Programming Pattern/README.md)
-  * [网络架构相关](Game Code/Network Related/README.md)
+### 逻辑代码
+* [导言](Game Code/README.md)
+* [游戏设计模式](Game Code/Game Programming Pattern/README.md)
+* [网络架构相关](Game Code/Network Related/README.md)
   
-### [基于Unity开发](Unity Learning/README.md)
+### 基于Unity开发
+* [导言](Unity Learning/README.md)
 * [集成开发环境（IDE）](Unity Learning/IDE/README.md)
  * [编辑器扩展](Unity Learning/IDE/Editor Extension/README.md)
 * [资源管理与更新](Unity Learning/Resource/README.md)
@@ -18,7 +18,8 @@
  * [Unity Shader](Unity Learning/Rendering/Unity Shader/README.md)
     * essay
 
-### [结合Lua开发](Lua/README.md)
+### [结合Lua开发
+* [导言](Lua/README.md)
 * [Lua语言介绍](Lua/Lua Language/README.md)
   * [Lua学习笔记](Lua/Lua Language/First Notes About Lua.md)
 * [Unity + Xlua解决方案](Lua/Unity with Xlua/README.md)
