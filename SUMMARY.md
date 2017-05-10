@@ -22,7 +22,7 @@
 * [使用Lua开发](Lua/README.md)
  * [Lua语言介绍](Lua/Lua Language/README.md)
  * [Unity + Xlua解决方案](Lua/Unity with Xlua/README.md)
-   * [Xlua Examples学习](XluaExampleNotes.md)
+   * [Xlua Examples学习](Lua/Unity with Xlua/XluaExampleNotes.md)
 
 
 
