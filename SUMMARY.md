@@ -5,7 +5,13 @@
 ### 游戏代码和架构
 * [导言](Game Code/README.md)
 * [游戏设计模式](Game Code/Game Programming Pattern/README.md)
-* [网络架构相关](Game Code/Network Related/README.md)
+  * [单例]
+  * [对象池]
+  * [组合还是继承]
+  * [状态机]
+  * [消息机制]
+  * [MVP架构模式]
+* [多人游戏](Game Code/Network Related/README.md)
   
 ### 基于Unity开发
 * [导言](Unity Learning/README.md)
@@ -16,7 +22,6 @@
 * [渲染](Unity Learning/Rendering/README.md)
  * [入门常识](Unity Learning/Rendering/Intro/README.md)
  * [Unity Shader](Unity Learning/Rendering/Unity Shader/README.md)
-    * essay
 
 ### 结合Lua开发
 * [导言](Lua/README.md)
@@ -27,6 +32,7 @@
   * [Xlua Examples学习](Lua/Unity with Xlua/XluaExampleNotes.md)
 
 ## 二、道
+Game Design
 
 ## 三、悟
 
