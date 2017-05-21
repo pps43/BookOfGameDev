@@ -1,13 +1,15 @@
 #愉快地在Unity里与Xlua玩耍
 
-> 由于Unity不能原生支持Lua，在使用Lua进行开发时，编写和调试难度比c#要大，为此有必要使用辅助工具，加速开发流程。这里简要地介绍一些个人觉得不错的辅助工具。
+> Xlua原是腾讯内部项目，后来开源，相比于之前市面上的Unity+Lua热更新解决方案，有着自己的优势。要注意的是，Xlua不仅用于Unity，只是我们这里重点讨论其在Unity中的使用。
+开源项目地址： https://github.com/Tencent/xLua （作者：车雄生）
+由于Unity不能原生支持Lua，在使用Lua进行开发时，编写和调试难度比c#要大，为此有必要使用辅助工具，加速开发流程。这里简要地介绍一些个人觉得不错的辅助工具。
 
 ## I. 基本开发环境
 - Visual Studio 2015 (Community)
 - [BabeLua](http://babelua.codeplex.com/)。是一个VS插件，安装和下载都比较简便。
 - Lua 5.3.3
 
-### Xlua 和 Unity 类型补全
+### 代码自动补全
 - 首先，下载这个[压缩包](http://url.cn/48TJGSW)
 - 参照压缩包里的 readme.txt 操作即可，效果不错。如果是新手，最好参考以下具体说明。
 - （1）`ExportLuaSyntax.cs`中报错的部分，直接注释掉即可。但从中可以发现可以自定义一些需要导出给BabeLua用来给出语法提示的类名。
