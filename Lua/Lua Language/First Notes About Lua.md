@@ -1,3 +1,12 @@
+# lua的学习资源
+- [官方教材](http://www.lua.org/pil/)
+
+  详实准确，但是英文的。
+  
+- [中文网站](http://www.runoob.com/lua/lua-tutorial.html)
+
+  简易实用，可以快速浏览。
+
 # 数据类型
 - **nil**
 
