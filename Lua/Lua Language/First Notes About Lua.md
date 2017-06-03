@@ -214,7 +214,7 @@ c = a:new()
 
 c:func() -- getmetatable(c).__index.func(c)，即a.func(c)
 ```
-上述会输出`defined by a`而不是`会输出defined by b`，妙就妙在b:new中用了self。如果把self直接改写为b，那么由于b就是个实体，那么，b.new(a,nil)就还是会把c的metatable变成b，b.__index=b。
+上述会输出`defined by a`而不是会输出`defined by b`，妙就妙在b:new中用了self。如果把self直接改写为b，那么由于b就是个实体，那么，b.new(a,nil)就还是会把c的metatable变成b，b.__index=b。
 
 
 # 底层交互
