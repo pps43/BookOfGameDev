@@ -136,8 +136,3 @@ Resources.UnloadUnusedAssets();
 - `AssetBundle.Unload(true)`, all objects that were loaded from this bundle will be destroyed as well. If there are game objects in your scene referencing those assets, the references to them will become missing.
 
 
-## Resources的使用
-> [Don't use it.](https://unity3d.com/learn/tutorials/temas/best-practices/resources-folder)
-
-## AssetBundle的使用
-
