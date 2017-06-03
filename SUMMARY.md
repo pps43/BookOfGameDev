@@ -16,8 +16,10 @@
 ### 基于Unity开发
 * [导言](Unity Learning/README.md)
 * [编辑器扩展](Unity Learning/IDE/Editor Extension/README.md)
-* [资源管理与更新](Unity Learning/Resource/README.md)
-* [界面系统（UGUI）](Unity Learning/UGUI/README.md)
+* [资源管理](Unity Learning/Resource management/README.md)
+  * [浅析Unity资源](Unity Learning/Resource management/DiveIntoUnityAsset.md)
+  * [浅析基于Mono的C#资源回收](Unity Learning/Resource management/DiveIntoMonoCsharpGC.md)
+* [界面（UGUI）](Unity Learning/UGUI/README.md)
 
 
 ### 结合Lua开发
