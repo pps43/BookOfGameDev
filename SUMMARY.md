@@ -26,8 +26,10 @@
 * [导言](Lua/README.md)
 * [Lua介绍](Lua/Lua Language/First Notes About Lua.md)
 * [愉快地在Unity里与Xlua玩耍](Lua/Unity with Xlua/CodeHappierWithXlua.md)
-* [Xlua Examples学习](Lua/Unity with Xlua/XluaExampleNotes.md)
-  
+* [Xlua Examples学习（一）](Lua/Unity with Xlua/XluaExampleNotes.md)
+* [Xlua Examples学习（二）](Lua/Unity with Xlua/XluaExampleNotes02.md)
+
+
 ### 渲染
  * [入门常识](Rendering/Intro/README.md)
  * [Unity Shader](Rendering/Unity Shader/README.md)
