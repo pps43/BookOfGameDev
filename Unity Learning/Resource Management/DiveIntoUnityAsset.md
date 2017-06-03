@@ -1,6 +1,6 @@
 Unity资源统称为`Asset`。
 
-
+# 
 ## （一）Asset 和 Unity.Object
 [官方详解](https://unity3d.com/learn/tutorials/temas/best-practices/assets-objects-and-serialization)
 
@@ -86,4 +86,44 @@ c#代码可以分为三种，继承Monobehavior的，继承ScriptableObject的�
 - 不需要挂在gameObject上，比如只为了存数据，可以用ScriptableObject或c#原生类。
 - 接上一条，若要求可序列化，则只有用ScriptableObject。
 - ScriptableObject与c#原生类的区别还在于：前者是一种Unity的资源，需要通过`Destroy`或` Resources.UnloadUnusedAssets()`来释放，其不归c#的GC管理。（[相关讨论](https://forum.unity3d.com/threads/scriptableobject-vs-plain-c-class.328325/)）
+
+## （四）Unity.Object的资源生命周期
+- **加载时机**
+  - 自动加载。
+    当其Instance ID被“解引用(dereference)”时，若Object还没被加载到内存，则Unity会自动机加载。
+  - 手动加载。
+    通过脚本创建，或者调用资源加载API的时候。
+
+> 解引用的意思是访问引用的对象，不是将引用置为null来解除。
+
+加载时，会建立起Instance ID到FileGuid和localID的映射。如果这个映射失效了，Unity编辑器里就会显示`(Missing)`，如果丢失的是纹理，则会显示粉红色。
+
+- **加载的耗时分布**
+  - Time to read the source data (from storage, from another GameObject, etc.)
+  - Time to set up the parent-child relationships between the new Transforms
+  - Time to instantiate the new GameObjects and Components
+  - Time to awaken the new GameObjects and Components
+> 对于具有复杂层级的gameObject，后三项的耗时甚至可以忽略。这是因为在序列化gameObject时，即使对于重复的元素，unity也会重复地将其序列化。所以在反序列化时，有一个优化就是将重复的元素另保存成一个prefab，然后动态实例化，拼接成一个大的gameObject。
+
+- **卸载时机**
+  - 切换场景；调用`Resources.UnloadUnusedAssets`之类的API。这种会将没有用到的对象卸载（注意：**没有用到**是指**c#代码没有其引用且unity里没有其他Object引用到它**。例如下面不会卸载掉MyPrefab资源，要obj=null后才行）。
+  
+  ```csharp
+Object obj = Resources.Load("MyPrefab");
+GameObject instance = Instantiate(obj) as GameObject;
+Destroy(instance);
+Resources.UnloadUnusedAssets(); 
+  ```
+  - Resources文件夹里面的资源在`Resources.UnloadAsset`后卸载，但保留InstanceID到FileGuid和localID的映射，当mono或别的object持有该对象的引用并解引用时，该对象会自动重新加载。
+  - AssetBundle里面的资源在` AssetBundle.Unload(true)`后立即卸载，并且所有访问其的引用会抛出异常！
+
+> 
+- `AssetBundle.Unload(false)`, compressed file data for assets inside the bundle will be unloaded, but any actual objects already loaded from this bundle will be kept intact. Of course you won't be able to load any more objects from this bundle.
+- `AssetBundle.Unload(true)`, all objects that were loaded from this bundle will be destroyed as well. If there are game objects in your scene referencing those assets, the references to them will become missing.
+
+
+## Resources的使用
+> [Don't use it.](https://unity3d.com/learn/tutorials/temas/best-practices/resources-folder)
+
+## AssetBundle的使用
 
