@@ -2,7 +2,7 @@
 * [为什么会有此书](README.md)
 
 ## 一、术
-### 游戏代码和架构
+### 代码和架构
 * [导言](Game Code/README.md)
 * [游戏设计模式](Game Code/Game Programming Pattern/README.md)
   * [单例]
