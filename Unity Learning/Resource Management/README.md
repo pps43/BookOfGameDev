@@ -1,3 +1,6 @@
+# 资源管理
+
+## 引言
 在开始正文前，要明确Unity游戏的内存可以分成哪几块，以及本节讨论的是哪一块。
 
 游戏占用的内存大体分为`代码 + 资源`。
@@ -10,3 +13,9 @@
 
 
 
+## 资源分析小工具
+- unity内存分类剖析
+https://bitbucket.org/Unity-Technologies/memoryprofiler/overview
+
+- 查看IL代码工具：ILSpy
+http://www.fishlee.net/soft/ilspy_chs/
