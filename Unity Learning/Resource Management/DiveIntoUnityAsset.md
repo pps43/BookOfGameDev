@@ -1,5 +1,6 @@
 # 浅析Unity资源
-Unity资源统称为`Asset`。
+Unity资源统称为`Asset`。本节讨论四个话题：Asset 和 Unity.Object
+的概念和内涵；File Guid, local ID 和 Instance ID的由来；MonoBehavior, ScriptableObject 和普通 c# 类的区别和应用场景；Unity.Object的资源生命周期（主要是加载和卸载）。
 
 ## （一）Asset 和 Unity.Object
 [官方详解](https://unity3d.com/learn/tutorials/temas/best-practices/assets-objects-and-serialization)
@@ -67,13 +68,14 @@ MonoBehaviour:
 ```
 第一行，`&` 符号后面的数字就是这个Object的local id。
 
-那为什么还需要什么`Instance ID`呢？官方给出的解答是：
+那为什么还需要什么`Instance ID`呢？
+
+官方给出的解答是：访问起来更快。
+
 > While File GUIDs and Local IDs are robust, GUID comparisons are slow.
+Unity internally maintains a cache that translates File GUIDs and Local IDs into simple integers that are unique **only during a single session**。
 
-解决办法是用Instance ID。
->  Unity internally maintains a cache that translates File GUIDs and Local IDs into simple integers that are unique **only during a single session**。
-
-当一个新的Object被注册到cache中，其自动获得一个Instance ID。具体来说，启动时，Unity会载入场景和所有Resource目录下的Objects，为其分配InstanceID。如果动态加载或卸载AssetBundle，Unity会生成或删除为其分配的InstanceID。所以，重新载入同一个AB包，获得的InstanceID不可保证相同。
+**当一个新的Object被注册到cache中，其自动获得一个Instance ID**。具体来说，启动时，Unity会载入场景和所有Resource目录下的Objects，为其分配InstanceID。如果动态加载或卸载AssetBundle，Unity会生成或删除为其分配的InstanceID。所以，重新载入同一个AB包，获得的InstanceID不可保证相同。
 
 ## （三）MonoBehavior, ScriptableObject 和普通 c# 类
 
