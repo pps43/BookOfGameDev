@@ -1,15 +1,24 @@
 # 资源管理
 
 ## 引言
-在开始正文前，要明确Unity游戏的内存可以分成哪几块，以及本节讨论的是哪一块。
+对于Unity游戏，堆内存占用大致分为三块：`Native堆`（Unity资源）、`Native Dll`（第三方DLL库） 和`Mono堆/栈`（c#资源）。具体来说：
+> 
+- Native (internal)
+  - AssetData: _Textures,AudioClips,Meshes_
+  - Game Objects & Components: _Transforms, etc_
+  - Engine Internals: _Managers,Rendering,Physics,etc_
+- Mono (managed)
+  - scripts' object (reference type)
+  - `Unity Wrappers objects`
+- Native Dll
+  - 3rd library Dlls
 
-游戏占用的内存大体分为`代码 + 资源`。
+Mono堆通过对应版本的 Mono GC 进行内存管理；
+Native堆由Unity提供了一些API以及某种自动内存管理。
+关于mono和GC的讨论见下一章节，本节讨论的是Native堆上的内存管理。
 
-对于Unity游戏，确切来说，可以分为`Native堆`（Unity资源）和`Mono堆`（c#资源）。后者通过对应版本的Mono自带的垃圾采集器（GC，Garbage Collector）进行内存管理，前者提供了一些API以及很弱的自动内存管理。
+**注**：上文中的`Unity Wrappers objects`就是unity暴露给c#的一些类，大都继承自Object类，比如GameObject、AudioClip、Transform……。可以这样理解：unity object数据是比较庞大的，**像一座冰山**，大部分保存在native堆中，而露出到c#的部分可以通过轻量级的wrapper对象来访问。注意这些wrapper对象本身通过mono堆的GC管理（wrapperObj=null之后会被GC，但不会立刻被GC。其对应的Native资源不会释放，除非调用Resources.UnloadUnusedAssets()）。unity提供了API或实现了 IDisposable 接口来通过这些wrapper对象来释放Native资源。API的例子:Destroy(wrapperObj), DestroyImmediate(wrapperObj)。IDisposable的例子具体见后文关于c#资源的讨论。
 
-本章首先讨论Native堆上的资源管理，为此，需要先认识Unity的资源。
-接着，会着重讨论Unity中的AssetBundle、Resources的使用，以及Unity的一些特殊的资源文件夹。
-然后讨论Mono堆上的资源管理，主要是为了减少GC工作而做的一些优化。
 
 
 
