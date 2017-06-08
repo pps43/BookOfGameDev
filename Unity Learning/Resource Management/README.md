@@ -13,13 +13,27 @@
 - Native Dll
   - 3rd library Dlls
 
-Mono堆通过对应版本的 Mono GC 进行内存管理；
-Native堆由Unity提供了一些API以及某种自动内存管理。
+堆的内存管理方式为：
+
+- Mono堆通过对应版本的 Mono GC 进行内存管理；
+- Native堆由Unity提供了一些API以及某种自动内存管理。
+
 关于mono和GC的讨论见下一章节，本节讨论的是Native堆上的内存管理。
 
-**注**：上文中的`Unity Wrappers objects`就是unity暴露给c#的一些类，大都继承自Object类，比如GameObject、AudioClip、Transform……。可以这样理解：unity object数据是比较庞大的，**像一座冰山**，大部分保存在native堆中，而露出到c#的部分可以通过轻量级的wrapper对象来访问。注意这些wrapper对象本身通过mono堆的GC管理（wrapperObj=null之后会被GC，但不会立刻被GC。其对应的Native资源不会释放，除非调用Resources.UnloadUnusedAssets()）。unity提供了API或实现了 IDisposable 接口来通过这些wrapper对象来释放Native资源。API的例子:Destroy(wrapperObj), DestroyImmediate(wrapperObj)。IDisposable的例子具体见后文关于c#资源的讨论。
+---
 
+**注**：
+上文中的`Unity Wrappers objects`就是unity暴露给c#的一些类，大都继承自Object类，比如GameObject、AudioClip、Transform等。
 
+可以这样理解：unity object数据是比较庞大的，**像一座冰山**，大部分保存在native堆中，而露出到c#的部分可以通过轻量级的wrapper对象来访问。
+
+这些wrapper对象本身通过mono堆的GC管理：**`wrapperObj = null`之后不久会被GC，但其对应的Native资源不会释放，除非调用Resources.UnloadUnusedAssets()，或场景切换后自动跳用这个API**。
+
+另外，unity提供了API或实现了 `IDisposable` 接口来通过这些wrapper对象来主动释放Native资源。
+- API的例子:Destroy(wrapperObj), DestroyImmediate(wrapperObj)。
+- IDisposable的例子具体见后文关于c#资源的讨论。
+
+---
 
 
 ## 资源分析小工具
