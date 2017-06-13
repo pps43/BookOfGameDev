@@ -36,6 +36,12 @@ Unity资源统称为`Asset`。本节讨论四个话题：Asset 和 Unity.Object
 
 * 只有 Component 及其子类，才可以附着到gameObject上。代码中访问的Component对象不可单独存在，必须要附着在某个gameObject上。
 
+> 为什么访问\`tranform\`的字段那么耗时？
+>
+> 首先，this.transform 等同于 GetComponent&lt;Tranform&gt;\(\)，遍历多个组件找到第一个Tranform本身就不快。
+>
+> 例如 transform.position，在访问到transform后，需要遍历该对象在Hierachy中的所有父节点，计算出全局坐标。若要改变这个字段，也会遍历Hierachy，因为保存的是相对父节点的局部坐标。然后会向所有Componenets发送消息。
+
 ## （二）File Guid, local ID 和 Instance ID
 
 首先，为了能**用文本编辑器查看资源内部结构**，需进行如下操作：
