@@ -10,9 +10,10 @@ Unity资源统称为`Asset`。本节讨论四个话题：Asset 和 Unity.Object
 ### Asset
 
 * **泛指Unity可识别的资源文件**，据可依具体分成 `Native Asset` 和 `Non-Native Asset`
-  > Native:   
+
+  > Native:  
   > 拥有可以被 Unity 直接识别的格式，例如MAT文件  
-  > Non-Native:   
+  > Non-Native:  
   > 外部资源，需要导入（import）才能被Unity识别，例如FBX文件，PNG文件等等
 
 * 每个Asset文件具有全局唯一的`File Guid`，存放在相应的**“.meta”文件**中
