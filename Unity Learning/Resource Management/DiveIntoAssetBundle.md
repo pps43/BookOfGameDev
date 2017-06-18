@@ -2,8 +2,8 @@
 
 ---
 
-[官方深度详解 best practice](https://unity3d.com/learn/tutorials/topics/best-practices/assetbundle-fundamentals?playlist=30089)  
-[官方指南系列 manual](https://docs.unity3d.com/Manual/AssetBundlesIntro.html)
+1. [官方深度详解 best practice](https://unity3d.com/learn/tutorials/topics/best-practices/assetbundle-fundamentals?playlist=30089)
+2. [官方指南系列 manual](https://docs.unity3d.com/Manual/AssetBundlesIntro.html)
 
 ## （一）概要
 
@@ -172,7 +172,8 @@ Dependencies:
 
 加载ab包主要有4个API，但具体表现会根据压缩方法、平台的不同而不同。
 
-1. ~~AssetBundle.LoadFromMemoryAsync / CreateFromMemory~~    **DO NOT USE IT ANYMORE   **
+1. ~~AssetBundle.LoadFromMemoryAsync / CreateFromMemory~~    \*\*DO NOT USE IT ANYMORE
+   \*\*
 2. AssetBundle.LoadFromFile
 3. WWW.LoadFromCacheOrDownload
 4. UnityWebRequest's DownloadHandlerAssetBundle \(on Unity 5.3 or newer\)
