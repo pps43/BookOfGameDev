@@ -108,9 +108,14 @@ public static void Debug<T1, T2>(T1 arg1, T2 arg2)
 MyDebug.Log("the player uin is: " , uin);//现在可以这么写，无额外GC，无装箱拆箱
 ```
 
-### yield return
+### yield
 
-【补充】
+- `yield break`。中止协程中的后续操作。
+- `yield return null/1/true/false`。挂起协程，回到主函数逻辑，下一帧【执行游戏逻辑时】从挂起的位置继续。
+- `yield return new WaitForSeconds(1.0f)`。挂起协程，1s后【执行游戏逻辑时】从挂起的位置继续。
+- `yield return new WaitForEndOfFrame()`。挂起协程，这一帧的渲染结束【显示到屏幕之前】时从挂起的位置继续。
+- `yield return StartCorotine(subCoroFunc());`。嵌套协程。当【子协程完全执行完毕时 && 执行游戏逻辑时】从挂起的位置继续。嵌套协程的作用不大，只是看上去更有层次。
+ 
 
 ### struct替代class
 
