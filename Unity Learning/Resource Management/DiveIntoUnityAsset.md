@@ -85,10 +85,7 @@ MonoBehaviour:
 > While File GUIDs and Local IDs are robust, GUID comparisons are slow.  
 > Unity internally maintains a cache that translates File GUIDs and Local IDs into simple integers that are unique **only during a single session**。
 
-当一个新的Object被注册到cache中，其自动获得一个Instance ID。具体来说：
-
-- 启动时，Unity会载入当前场景，以及所有Resource目录下的Objects，为其分配InstanceID。
-- 动态加载AssetBundle，Unity会生成InstanceID，卸载资源后会删除这个InstanceID。所以，重新载入同一个AB包，获得的InstanceID不可保证相同。
+**当一个新的Object被注册到cache中，其自动获得一个Instance ID**。具体来说，启动时，Unity会载入场景和所有Resource目录下的Objects，为其分配InstanceID。如果动态加载或卸载AssetBundle，Unity会生成或删除为其分配的InstanceID。所以，重新载入同一个AB包，获得的InstanceID不可保证相同。
 
 ## （三）MonoBehavior, ScriptableObject 和普通 c\# 类
 
