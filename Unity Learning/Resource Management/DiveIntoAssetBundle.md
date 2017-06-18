@@ -212,17 +212,15 @@ Dependencies:
 * 可以理解为是`WWW.LoadFromCacheOrDownload`的替代，解决了其两个痛点。多个线程解压不再会卡死了，因为由一个内置的jobsystem进行分配。多余的数据也没了，但记得这个Handler也是个wrapper要主动释放哦。
 * 可以配置要不要放到Cache中。要存到Cache，则类似`WWW.LoadFromCacheOrDownload`；不要Cache，则`AssetBundle.LoadFromFile`。
 
-### AssetBundle管理器
+### 
 
-[官方开源项目](https://bitbucket.org/Unity-Technologies/assetbundledemo)
-
-### 处理ab包依赖
+### 加载时处理ab包依赖
 
 首先要明确的一点是：**unity不会自动处理ab包的依赖加载**。
 
 好消息是，对于有依赖关系的ab包，加载的先后顺序不重要，如果ab包1依赖于ab包2，那么，只要自己保证在加载ab包1的某个Object的时候，其依赖的ab包2已经被加载就行。这一点可以通过使用上文介绍过的`AssetBundleManifest`对象完成。
 
-假设我们需要从名为`myprefab`的ab包中实例化某个object，而这个ab包又依赖别的ab包，那么加载逻辑是：
+假设我们需要从名为`myprefab`的ab包中加载某个object，而这个ab包又依赖别的ab包，那么加载逻辑是：
 
 ```csharp
 AssetBundle assetBundle = AssetBundle.LoadFromFile(manifestFilePath);
@@ -234,15 +232,25 @@ foreach(string dependency in dependencies)
 }
 ```
 
-## （五）加载ab包中的asset
+### AssetBundle管理器
+
+[官方开源项目](https://bitbucket.org/Unity-Technologies/assetbundledemo)
+
+首先，Unity不会自动卸载刚刚从当前场景被移除的Object，而是在特定时机触发。为了更好的表现，通常需要人工管理。对于AssetBundle来说，管理的不好，通常会造成内存浪费（重复创建Obejct）或丢失材质。
+
+AssetBundle的管理核心在于何时调用`AssetBundle.Unload(bool)`，以及选true还是false。这个API主要是卸载内存中的ab包header数据，若选true，则还会卸载从这个ab包中加载的所有Object。若选false，则不会，而是断开ab包和这些Obejct之间的关联。这也可能造成一个问题：选false后，再次加载这个ab包，再加载这些Object，则会造成内存浪费——之前的Object和现在的Object是完全重复的！
+
+## （五）加载ab包中的Object
 
 总的来说有同步和异步两种思路，每种思路下各有3个API：加载全部，加载部分，加载一个。
 
 同步理论上比异步快1帧以上，实际体验更快。Unity 5.1之前，每帧最多能异步加载一个object，所以就更更慢了（这是一个bug，5.2修复了）。另外，异步加载在每一帧占用的时间片长度是可以通过`Application.backgroundLoadingPriority`进行优先级调节的。默认的优先级对应每帧最多占用10ms。
 
-Unity 5.3之后，多个object可以并行地由多个后台线程加载了，
+Unity 5.3之后，多个object可以并行地由多个后台线程加载了。
 
 一次性加载全部比每次加载一个所用的总时间短。
+
+**加载**（Load）完某个Object后，通常下一步就是以此为母板进行**实例化**（Instantiate）了。注意区分这两个概念。
 
 ## 例子
 
