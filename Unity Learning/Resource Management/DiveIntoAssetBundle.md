@@ -234,13 +234,17 @@ AssetBundle的管理核心在于何时调用`AssetBundle.Unload(bool)`，以及�
 
 一定要使用false参数的话，通常要在调用该API追加如下逻辑：将该ab包加载出来的Object的引用（注意包含两部分：c\#代码和场景）都消除，然后调用`Resources.UnloadUnusedAssets`。
 
-
-
 ### ab包小工具
 
-Unity官方制作的AssetBundle管理器，既包含了下载和管理的逻辑，还包含了编辑器插件用于模拟ab包下载。  
-插件安装使用：[https://docs.unity3d.com/Manual/AssetBundles-Manager.html](https://docs.unity3d.com/Manual/AssetBundles-Manager.html)  
+Unity官方制作的AssetBundle管理器，既包含了下载和管理的逻辑，还包含了编辑器插件用于模拟ab包下载。
+
+  
+插件安装： [https://www.assetstore.unity3d.com/en/?&\_ga=2.79209684.1521571944.1497786482-670410889.1464698583\#!/content/45836](https://www.assetstore.unity3d.com/en/?&_ga=2.79209684.1521571944.1497786482-670410889.1464698583#!/content/45836)
+
+插件使用：[https://docs.unity3d.com/Manual/AssetBundles-Manager.html](https://docs.unity3d.com/Manual/AssetBundles-Manager.html)  
 插件源码：[https://bitbucket.org/Unity-Technologies/assetbundledemo](https://bitbucket.org/Unity-Technologies/assetbundledemo)
+
+
 
 另外，为了使工作流更可视化，Unity正尝试推出新的ab包插件，详见： [https://blogs.unity3d.com/2016/10/25/new-assetbundle-graph-tool-prototype/](https://blogs.unity3d.com/2016/10/25/new-assetbundle-graph-tool-prototype/)
 
