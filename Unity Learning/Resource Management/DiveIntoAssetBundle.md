@@ -108,7 +108,7 @@ Unity官方制作的AssetBundle管理器，既包含了下载和导入的逻辑�
 
 记载了CRC，以及各个AssetBundle之间的**依赖关系**。
 
-例如下面有两个AssetBundle：myprefabs和mysprits，其中myprefabs里有一个Obejct用到了mysprits里的一张图，所以产生了依赖关系。
+例如下面有两个AssetBundle：myprefabs和mysprits，其中myprefabs里有一个Object用到了mysprits里的一张图，所以产生了依赖关系。
 
 ```
 ManifestFileVersion: 0
@@ -172,15 +172,15 @@ Dependencies:
 
 加载ab包主要有4个API，但具体表现会根据压缩方法、平台的不同而不同。
 
-1. ~~AssetBundle.LoadFromMemoryAsync / CreateFromMemory~~    \*\*DO NOT USE IT ANYMORE
-   \*\*
+1. ~~AssetBundle.LoadFromMemoryAsync / CreateFromMemory~~  \(DO NOT USE IT ANYMORE
+   \)
 2. AssetBundle.LoadFromFile
 3. WWW.LoadFromCacheOrDownload
 4. UnityWebRequest's DownloadHandlerAssetBundle \(on Unity 5.3 or newer\)
 
 下面对4个API分别来做简要说明。由于这几个API在移动端和编辑器模式下行为不同，具体参考 [https://docs.unity3d.com/Manual/AssetBundles-Native.html](https://docs.unity3d.com/Manual/AssetBundles-Native.html)。下文说的都是在移动端上的表现。
 
-#### AssetBundle.LoadFromFile
+#### _AssetBundle.LoadFromFile_
 
 * 适用于未压缩或LZ4压缩模式下的本地文件。
 * 对于LZMA压缩不使用。
@@ -188,7 +188,7 @@ Dependencies:
 * 调用该API仅载入ab包的header部分，不会直接将所有都放到内存中。调用ab.Load之类的方法再寻找并载入具体的object。
 * 该API是首选的，因为快速、省内存。
 
-#### WWW.LoadFromCacheOrDownload
+#### _WWW.LoadFromCacheOrDownload_
 
 为了弄清楚该函数的流程，首先定义：
 
@@ -206,13 +206,13 @@ Dependencies:
 * 不要连续调用下载ab包，这样会导致开启太多解压线程，卡死
 * 由于www.bytes的需要，**www对象会额外保存一份ab包的数据放在Native堆上**，若未能及时、正确的释放www这个wrapper对应的Native资源，则会造成浪费
 
-#### UnityRequest + AssetBundleDownLoadHandler
+#### _UnityRequest + AssetBundleDownLoadHandler_
 
 * 这两个API在Unity 5.3以上版本中才能使用
 * 可以理解为是`WWW.LoadFromCacheOrDownload`的替代，解决了其两个痛点。多个线程解压不再会卡死了，因为由一个内置的jobsystem进行分配。多余的数据也没了，但记得这个Handler也是个wrapper要主动释放哦。
 * 可以配置要不要放到Cache中。要存到Cache，则类似`WWW.LoadFromCacheOrDownload`；不要Cache，则`AssetBundle.LoadFromFile`。
 
-### assetbundle管理器
+### AssetBundle管理器
 
 [官方开源项目](https://bitbucket.org/Unity-Technologies/assetbundledemo)
 
@@ -220,9 +220,29 @@ Dependencies:
 
 首先要明确的一点是：unity不会自动加载依赖关系。
 
-好消息是，对于有依赖关系的ab包，加载的先后顺序不重要，如果ab包1依赖于ab包2，那么，只要自己保证在加载ab包1的某个Object的时候，其依赖的ab包2已经被加载（通过使用上文介绍过的`AssetBundleManifest对象`）就行。
+好消息是，对于有依赖关系的ab包，加载的先后顺序不重要，如果ab包1依赖于ab包2，那么，只要自己保证在加载ab包1的某个Object的时候，其依赖的ab包2已经被加载就行。这一点可以通过使用上文介绍过的`AssetBundleManifest`对象完成。
 
-### 实例化ab包中的asset
+假设我们需要从名为`myprefab`的ab包中实例化某个object，而这个ab包又依赖别的ab包，那么加载逻辑是：
+
+```csharp
+AssetBundle assetBundle = AssetBundle.LoadFromFile(manifestFilePath);
+AssetBundleManifest manifest = assetBundle.LoadAsset<AssetBundleManifest>("AssetBundleManifest");
+string[] dependencies = manifest.GetAllDependencies("myprefab"); //Pass the name of the bundle you want the dependencies for.
+foreach(string dependency in dependencies)
+{
+    AssetBundle.LoadFromFile(Path.Combine(assetBundlePath, dependency));
+}
+```
+
+
+
+## （五）实例化ab包中的asset
+
+
+
+
+
+
 
 ## 例子
 
