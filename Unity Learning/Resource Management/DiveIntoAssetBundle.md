@@ -73,13 +73,7 @@ public class CreateAssetBundles
 }
 ```
 
-### ab包小工具
-
-Unity官方制作的AssetBundle管理器，既包含了下载和导入的逻辑，还包含了模拟ab包下载的编辑器插件。  
-插件安装使用：[https://docs.unity3d.com/Manual/AssetBundles-Manager.html](https://docs.unity3d.com/Manual/AssetBundles-Manager.html)  
-插件源码：[https://bitbucket.org/Unity-Technologies/assetbundledemo](https://bitbucket.org/Unity-Technologies/assetbundledemo)
-
-另外，为了使工作流更可视化，Unity正尝试推出新的ab包插件，详见： [https://blogs.unity3d.com/2016/10/25/new-assetbundle-graph-tool-prototype/](https://blogs.unity3d.com/2016/10/25/new-assetbundle-graph-tool-prototype/)
+### 
 
 ## （三）ab包的内部结构
 
@@ -234,11 +228,21 @@ foreach(string dependency in dependencies)
 
 ### AssetBundle管理器
 
-[官方开源项目](https://bitbucket.org/Unity-Technologies/assetbundledemo)
-
 首先，Unity不会自动卸载刚刚从当前场景被移除的Object，而是在特定时机触发。为了更好的表现，通常需要人工管理。对于AssetBundle来说，管理的不好，通常会造成内存浪费（重复创建Obejct）或丢失材质。
 
-AssetBundle的管理核心在于何时调用`AssetBundle.Unload(bool)`，以及选true还是false。这个API主要是卸载内存中的ab包header数据，若选true，则还会卸载从这个ab包中加载的所有Object。若选false，则不会，而是断开ab包和这些Obejct之间的关联。这也可能造成一个问题：选false后，再次加载这个ab包，再加载这些Object，则会造成内存浪费——之前的Object和现在的Object是完全重复的！
+AssetBundle的管理核心在于何时调用`AssetBundle.Unload(bool)`，以及选true还是false。这个API主要是卸载内存中的ab包header数据，若选true，则还会卸载从这个ab包中加载的所有Object。若选false，则不会，而是断开ab包和这些Obejct之间的关联。这也可能造成一个问题：选false后，再次加载这个ab包，然后又走一遍加载这些Object的逻辑，则会造成比较隐蔽的内存浪费——之前的Object还没清除（也不是没办法清除，方法接下来说），和现在的Object是完全重复的！所以，官方建议，在掌握何时调用该API的前提下，尽量使用true参数。
+
+一定要使用false参数的话，通常要在调用该API追加如下逻辑：将该ab包加载出来的Object的引用（注意包含两部分：c\#代码和场景）都消除，然后调用`Resources.UnloadUnusedAssets`。
+
+
+
+### ab包小工具
+
+Unity官方制作的AssetBundle管理器，既包含了下载和管理的逻辑，还包含了编辑器插件用于模拟ab包下载。  
+插件安装使用：[https://docs.unity3d.com/Manual/AssetBundles-Manager.html](https://docs.unity3d.com/Manual/AssetBundles-Manager.html)  
+插件源码：[https://bitbucket.org/Unity-Technologies/assetbundledemo](https://bitbucket.org/Unity-Technologies/assetbundledemo)
+
+另外，为了使工作流更可视化，Unity正尝试推出新的ab包插件，详见： [https://blogs.unity3d.com/2016/10/25/new-assetbundle-graph-tool-prototype/](https://blogs.unity3d.com/2016/10/25/new-assetbundle-graph-tool-prototype/)
 
 ## （五）加载ab包中的Object
 
