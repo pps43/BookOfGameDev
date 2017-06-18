@@ -79,7 +79,7 @@ Unity官方制作的AssetBundle管理器，既包含了下载和导入的逻辑�
 插件安装使用：[https://docs.unity3d.com/Manual/AssetBundles-Manager.html](https://docs.unity3d.com/Manual/AssetBundles-Manager.html)  
 插件源码：[https://bitbucket.org/Unity-Technologies/assetbundledemo](https://bitbucket.org/Unity-Technologies/assetbundledemo)
 
-另外，为了使工作流更可视化，Unity正尝试推出新的流插件，详见： [https://blogs.unity3d.com/2016/10/25/new-assetbundle-graph-tool-prototype/](https://blogs.unity3d.com/2016/10/25/new-assetbundle-graph-tool-prototype/)
+另外，为了使工作流更可视化，Unity正尝试推出新的ab包插件，详见： [https://blogs.unity3d.com/2016/10/25/new-assetbundle-graph-tool-prototype/](https://blogs.unity3d.com/2016/10/25/new-assetbundle-graph-tool-prototype/)
 
 ## （三）ab包的内部结构
 
