@@ -133,9 +133,19 @@ struct是在栈上的，更快，而且不存在GC。什么时候用呢？
 
 ## IDisposable与Unmanaged Resources
 
+[什么是Unmanaged Resources？](https://stackoverflow.com/questions/3433197/what-exactly-are-unmanaged-resources)
 [使用IDisposable的正确姿势](https://stackoverflow.com/questions/538060/proper-use-of-the-idisposable-interface)
 
-[什么是Unmanaged Resources？](https://stackoverflow.com/questions/3433197/what-exactly-are-unmanaged-resources)
+非托管资源，顾名思义，占用的是非托管堆上的内存。常见的非托管资源如：
 
-对于托管资源，其由GC管理；对于非托管资源，是要
+- Open files
+- Open network connections
+- Unmanaged memory
+- In XNA: vertex buffers, index buffers, textures, etc.
+
+但要注意，并不是所有文件读写操作都是在与非托管资源直接打交道，很多时候.net封装了一层wrapper类供我们使用，暗地里完成了很多“dirty work”。
+
+> When you open file in .NET, you probably use some built-in .NET class System.IO.File, FileStream or something else. Because it is a normal .NET class, it is managed.
+
+对于托管资源，其由GC管理；对于非托管资源，是要手动调用自定义的卸载方法的。为了统一命名这个卸载方法，要求实现`IDisposable`接口。如果没有手动调用，那么，由于这个非托管资源是挂在c#的object底下的，当这个object被GC最终处理时，会调用一个`Finalize`方法（c#中则是去实现一个类似c++析构函数名字的函数），在这里可以作为释放非托管资源的最后一道屏障。具体怎么用，参考上面的链接。
 
