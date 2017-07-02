@@ -190,6 +190,7 @@ Dependencies:
 * 步骤2：本地载入到Unity专门的Cache（Cache中一定是解压的）
 * 步骤3：Cache到可用的内存对象
 
+
 对于某个ab包：
 
 * 若已经存在Cache中，则直接执行步骤3，相当于调用 `AssetBundle.LoadFromFile`；
@@ -200,13 +201,21 @@ Dependencies:
 * 不要连续调用下载ab包，这样会导致开启太多解压线程，卡死
 * 由于www.bytes的需要，**www对象会额外保存一份ab包的数据放在Native堆上**，若未能及时、正确的释放www这个wrapper对应的Native资源，则会造成浪费
 
+
+> **Unity Cache 是什么**
+和CPU的Cache所指代的含义不同，Unity的Cache指的是存在本地的。一般占用空间的上限是4G。如果要下载的ab包超出了剩余Cache的大小，Unity会删除最近最少使用的ab包以及被标记为`Caching.MarkAsUsed`的ab包。另外还有一个属性`Caching.expirationDelay`，超过期限的ab包会被自动删除。再有一个就是清空所有Cache的API`Caching.CleanCache`。除此之外，难以从更细的粒度对Cache进行管理。
+
+
+
+
+
 #### _UnityRequest + AssetBundleDownLoadHandler_
 
 * 这两个API在Unity 5.3以上版本中才能使用
 * 可以理解为是`WWW.LoadFromCacheOrDownload`的替代，解决了其两个痛点。多个线程解压不再会卡死了，因为由一个内置的jobsystem进行分配。多余的数据也没了，但记得这个Handler也是个wrapper要主动释放哦。
 * 可以配置要不要放到Cache中。要存到Cache，则类似`WWW.LoadFromCacheOrDownload`；不要Cache，则`AssetBundle.LoadFromFile`。
 
-### 
+
 
 ### 加载时处理ab包依赖
 
