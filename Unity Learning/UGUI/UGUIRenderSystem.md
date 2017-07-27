@@ -31,3 +31,11 @@ SR用更复杂的顶点运算为代价，剔除了大量透明区域，减少了
 
 另外，渲染3D物体用的是MeshRenderer（简称MR），它和SR的区别在哪里呢？MR可以接受光照并且投射阴影。而SR不能原生支持这一点（ https://forum.unity3d.com/threads/why-cant-sprites-gameobjects-cast-shadows.215461/ ）。
 
+
+
+# 渲染层级控制
+（待补充）
+
+
+# 
+
