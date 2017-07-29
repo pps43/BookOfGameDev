@@ -29,7 +29,7 @@
   * [消息系统](Unity Learning/UGUI/UGUIEventSystem.md)
   * [渲染系统](Unity Learning/UGUI/UGUIRenderSystem.md)
   * [UGUI优化基础篇：图集](Unity Learning/UGUI/UGUIOptimization_Atlas.md)
-  * [UGUI优化进阶篇：字体](Unity Learning/UGUI/UGUIOptimization_TextFont.md)
+  * [UGUI优化进阶篇：字体、文本](Unity Learning/UGUI/UGUIOptimization_TextFont.md)
   * [UGUI优化进阶篇：定制组件](Unity Learning/UGUI/UGUIOptimization_DIY_Components.md)
   * [UGUI优化高级篇：纹理压缩](Unity Learning/UGUI/UGUIOptimization_TextureCompression.md)
   * [实用技巧](Unity Learning/UGUI/UGUITipsOnHowTo.md)
