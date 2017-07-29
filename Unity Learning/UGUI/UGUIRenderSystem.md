@@ -126,7 +126,9 @@ drawcall太高，意味着有频繁地改变渲染状态，这是很慢的操作
 
 ## （二）降低overdraw的技巧
 首先观察当前场景的overdraw：unity编辑器中scene视图中选择`OverDraw`（默认是`shaderd`），越亮的区域，overdraw越高。
+
 ![](/assets/overdraw.png)
+
 对于降低overdraw，有这么几种办法：
 （1）全屏遮挡的情况，则为被遮挡的canvas添加`CanvasGroup`组件，然后在被挡住时将其alpha值设为0，就不会传给GPU渲染了。Canvas Group还有一些其他设置，意味着该节点以及所有的子节点都可以统一地更改一些行为。
 
