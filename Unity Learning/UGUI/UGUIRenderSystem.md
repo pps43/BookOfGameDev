@@ -6,17 +6,23 @@
 
 UGUI的渲染器是 **Canvas Renderer**（下文简称为CR），首先来看看其与同样是渲染2D物体的 **Sprite Renderer**（下文简称为SR） 的区别和联系（[原文链接](https://rubentorresbonet.wordpress.com/2016/05/26/unity-sprites-spriterenderer-vs-canvasrenderer-ui-image/)）。
 
-### 相似点
+#### 相似点
 - 都有一个渲染队列来处理透明物体，从后往前渲染。
 - 都可以通过图集（Atlas）来合并渲染批次，降低Drawcall。
 
-### 不同点
+#### 不同点
 - CR与RectTransform配合，因此可以有专门的布局适配，但必须在Canvas中使用，常用于UI。SR与Tranform配合，没有适配，常用于GamePlay。
 - CR是基于矩形分割的三角网格，一张网格**最少**有两个三角形，透明部分也占用空间。SR的三角网格比较复杂，不过也是自动生成的，能剔除大部分透明部分。
 
->  之所以使用CR渲染一张图最少有2个三角形，是因为仅在`ImageType`设置为simple时成立。设置为sliced（九宫格），将会有18个三角形，设置为tiled可能更多。对于sprite renderer，若非透明的部分不连通，则为每个非连通部分各自生成网格。在Unity编辑器中观察三角形网格可以在scene中选择`Shaded Wireframe`。
+>  之所以使用CR渲染一张图最少有2个三角形，是因为仅在`ImageType`设置为simple时成立。设置为sliced（九宫格），将会有18个三角形，设置为tiled可能更多。
 
-### 小结
+![非连通sprite mesh](/assets/spriterenderMesh.png)
+
+> 对于sprite renderer，若非透明的部分不连通，则为每个非连通部分各自生成网格。在Unity编辑器中观察三角形网格可以在scene中选择`Shaded Wireframe`。
+
+
+
+#### 小结
 可以看到，三角形数和网格面积是一对“trade-off”。
 
 网格三角形数和顶点数成正比，影响的是GPU的几何运算量。网格所占面积影响的是GPU的片元计算量。
@@ -26,15 +32,21 @@ UGUI的渲染器是 **Canvas Renderer**（下文简称为CR），首先来看看
 SR用更复杂的顶点运算为代价，剔除了大量透明区域，减少了overdraw，换取了更少的片元处理，节省了GPU带宽。而且，变化的SR不会像CR那样引起整个canvas去rebuild。本人认为，在显示不需要使用布局功能的2D物体时，可优先考虑用SR而不是通通放到Canvas下做成UI，这样既可以减轻overdraw、也能防止潜在的过量rebuild。
 
 
-### 补充
+#### 补充
 上面提到了SR的网格是自动生成的。其实，Unity自带的SR网格生成算法并不好，更好的算法[见这里](https://www.codeandweb.com/texturepacker)。
 
 另外，渲染3D物体用的是MeshRenderer（简称MR），它和SR的区别在哪里呢？MR可以接受光照并且投射阴影。而SR不能原生支持这一点（ https://forum.unity3d.com/threads/why-cant-sprites-gameobjects-cast-shadows.215461/ ）。
 
 
 
+
+
+
 # 渲染层级
 （待补充）
+
+
+
 
 
 # 渲染流程
@@ -85,7 +97,6 @@ drawcall太高，意味着有频繁地改变渲染状态，这是很慢的操作
 但要记住一点，虽然通常我们都在尽量降低drawcall，但并不是越低越好。所以不要一味追求低drawcall而牺牲了其他方面的性能。
 
 
-
 ## （四）fillRate
 这个是显卡里面的概念，这里单独拎出来，是因为overdraw导致的fillRate过大问题通常是移动设备GPU渲染的瓶颈（而不是顶点数太多）。
 
@@ -99,3 +110,28 @@ drawcall太高，意味着有频繁地改变渲染状态，这是很慢的操作
 > To render a 3D scene, textures are mapped over the top of polygon meshes. This is called texture mapping and is accomplished by texture mapping units (TMUs) on the videocard. Texture fill rate is a measure of the speed with which a particular card can perform texture mapping.
 
 
+
+
+# 优化技巧举例
+## （一）隐藏UI的正确方法
+如果用setactive（false），会导致所在canvas的VBO数据失效。所以再次setactive（true）的时候，会导致整个canvas去`rebuild`和`rebatch`，从而对CPU造成负担。
+
+推荐方法：**多使用sub-Canvas**（注意不仅要添加`Canvas`组件，还有`Graphic Raycaster`组件），隐藏目标采用将对应的`CanvasRenderer.enabled = false`。
+
+但注意挂在上面的脚本还是在运行的，而且虽然看不见了，还是能被Graphic Raycast检测到。如果这样会对逻辑行为造成影响，那么应该自己实现一个manager去管理CanvasRenderer.enabled 下的脚本行为。
+
+[参考资料](https://unity3d.com/learn/tutorials/topics/best-practices/other-ui-optimization-techniques-and-tips#disabling-canvas-renderers)
+
+## （二）降低overdraw的技巧
+首先观察当前场景的overdraw：unity编辑器中scene视图中选择`OverDraw`（默认是`shaderd`），越亮的区域，overdraw越高。
+![](/assets/overdraw.png)
+对于降低overdraw，有这么几种办法：
+（1）全屏遮挡的情况，则为被遮挡的canvas添加`CanvasGroup`组件，然后在被挡住时将其alpha值设为0，就不会传给GPU渲染了。Canvas Group还有一些其他设置，意味着该节点以及所有的子节点都可以统一地更改一些行为。
+
+![](/assets/canvasGroup.PNG)
+
+`Blocks Raycasts`是一个很有用的设置，取消勾选，则意味着该canvas里面的UI都不会接收点击等事件了。
+
+`Ignore Parent Group`如果勾选，则表明该canvas无视上层CanvasGroup的设置。
+
+（2）非全屏遮挡，这就要从美术资源上想办法。
