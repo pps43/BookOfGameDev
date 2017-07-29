@@ -13,7 +13,7 @@
 - 在初始化的时候预加载常用的字符集，从而减少rebuild次数。利用 `Font.RequestCharactersInTexture`
 
 # 制作自定义字体（待完善）
-
+http://blog.sina.com.cn/s/blog_89d90b7c0102vk20.html
 
 # 文本网格(待完善)
 文本中的每一个字符是单独的一个面片，而且周围空白的区域还不小，因此容易叠加在别的UI上，造成不良影响。
