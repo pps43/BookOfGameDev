@@ -17,6 +17,7 @@ Unity资源统称为`Asset`。本节讨论四个话题：Asset 和 Unity.Object
   > 外部资源，需要导入（import）才能被Unity识别，例如FBX文件，PNG文件等等
 
 * 每个Asset文件具有全局唯一的`File Guid`，存放在相应的**“.meta”文件**中
+  > 这里有一个搜索某个Asset被哪里引用的小技巧：根据guid，用 notepad++ 对Asset文件夹做全文搜索即可（`Ctrl+SHift+F`）
 
 * None-Native资源的meta文件中记载了其使用了哪种 **Importer**
 
@@ -47,6 +48,8 @@ Unity资源统称为`Asset`。本节讨论四个话题：Asset 和 Unity.Object
 首先，为了能**用文本编辑器查看资源内部结构**，需进行如下操作：
 
 > Edit-&gt;Project Settings-&gt;Editor -&gt;Assets Serialization，选择 force text
+
+![](/assets/assetSerialization.png)
 
 我们已经知道，每个文件有全局唯一的File Guid。一个文件中有多个Object，每个Object有文件中唯一的local Id。所以，每个Object的全局唯一标识为`File Guid + local Id`。Unity编辑器会自动将文件路径和 FileGuid的映射关系保存在一张表里。
 
