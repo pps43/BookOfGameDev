@@ -26,9 +26,9 @@
   * [浅析基于Mono的C#资源回收](Unity Learning/Resource Management/DiveIntoMonoCsharpGC.md)
 * [UGUI](Unity Learning/UGUI/README.md)
   * ~~[布局系统](Unity Learning/UGUI/UGUILayoutSystem.md)~~
-  * [消息系统](Unity Learning/UGUI/UGUIEventSystem.md)
+  * ~~[消息系统](Unity Learning/UGUI/UGUIEventSystem.md)~~
   * [浅析UGUI的渲染机制](Unity Learning/UGUI/UGUIRenderSystem.md)
-  * [字体和文本的常识介绍和优化](Unity Learning/UGUI/UGUIOptimization_TextFont.md)
+  * [浅析字体和文本的优化](Unity Learning/UGUI/UGUIOptimization_TextFont.md)
   * ~~[UGUI优化高级篇：纹理压缩](Unity Learning/UGUI/UGUIOptimization_TextureCompression.md)~~
   * [实用技巧](Unity Learning/UGUI/UGUITipsOnHowTo.md)
 * [性能优化](Unity Learning/PerformanceOptimizition/README.md)
