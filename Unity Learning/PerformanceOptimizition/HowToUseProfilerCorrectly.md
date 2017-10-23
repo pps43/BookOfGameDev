@@ -20,10 +20,10 @@ Unity自带的Profiler工具十分强大，尤其是可以用于真机测试，�
 
 
 
-- Loading.UpdatePreloading  (1647ms, 1.6MB GC)
+- Loading.UpdatePreloading
  - Application.LoadLevelAsyncOperationToComplete
   - Application.LoadLevelAsync Intergrate
-   - Loading.AwakeFromLoad  (call 1527 times, 1.6MB GC, 200ms)
+   - Loading.AwakeFromLoad
     - SkeletonGraphic.Awake
    - UnloadScene
 > Loading.UpdatePreloading是Unity引擎最主要的加载函数，主要负责卸载当前场景的资源，并且加载下一场景中的相关资源和序列化信息。
@@ -53,7 +53,7 @@ Unity自带的Profiler工具十分强大，尤其是可以用于真机测试，�
 > [原文链接](http://blog.sina.com.cn/s/blog_155a1f2470102wa88.html)若开启了多线程渲染，则出现的是Gfx.WaitForPresent，其实二者表示的含义都是一样的：等待GPU以进行下一次渲染。出现这种情况有以下原因：（1）开了垂直同步（ios无法关闭垂直同步，只能设置帧率），则可能是CPU开销远小于GPU开销，导致等待VSync；也可能是CPU开销很高，错过了VSync，只有等待下一次VSync（`常见于加载大AB包，Resource.Load加载大纹理`）（2）GPU开销很高，CPU要等待GPU上一帧渲染完成。。。最终结论是该项耗时无法直接优化，根本原因在别处。
 
 - Graphics.Blit
-> 通常与屏幕后处理的shader相关。为什么我们项目会有这个？
+> 通常与屏幕后处理的shader相关。
 
 - Selectable.OnCanvasGroupChanged (BaseSceneEaseInOut.Start里面)
 
@@ -63,7 +63,7 @@ Unity自带的Profiler工具十分强大，尤其是可以用于真机测试，�
  - JobAlloc.Overflow
 
 - WaitForTargetFPS
-> 设定目标帧率后，用于填补多余时间的。优化的时候可以忽略这个。
+> 设定目标帧率后，用于填补多余时间的。优化的时候可以忽略这个。顺便补充一点：ios上帧率只能设置为30或60，其他帧率无效，默认是60。
 
 ## GPU分析
 好像暂不支持。
@@ -72,3 +72,4 @@ Unity自带的Profiler工具十分强大，尤其是可以用于真机测试，�
 ## 内存分析
 
 ## 音频分析
+音频的消耗不能明确反映在内存分析里，之前有一个创建过多AudioSource导致卡顿的BUG，很久都没能发现，就是因为Profiler中的CPU和内存表现正常。
