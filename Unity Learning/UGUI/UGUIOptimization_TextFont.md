@@ -1,4 +1,4 @@
-# UGUI优化进阶篇：字体、文本
+# 字体和文本的常识介绍和优化
 
 长期以来，若使用UGUI自带的Text及相关组件（如Outline）的性能之低下就为人诟病，最有名的替代插件就是`TextMeshPro`。现在，这个插件将被整合到`Unity 2017`这个版本中（[公告链接](https://blogs.unity3d.com/2017/03/20/textmesh-pro-joins-unity/)）。可能很多项目还没采用这个不成熟的版本，所以我们还是要回过头来说说UGUI的文本和字体优化。
 
@@ -27,11 +27,11 @@ http://blog.sina.com.cn/s/blog_89d90b7c0102vk20.html
  - 当text组件本身变化或父节点被 `Setactive(true/false)` 时，会引发rebuild，有时会对性能造成明显影响。
 
 
-- 尽量不要开启**Text 中的BestFit**
+- 不要开启**Text 中的BestFit**
  - 官方原话：在任何情况下都不推荐使用。为了在一定空间内塞满所要展示的字符串，Best Fit会动态改变字体的大小，从上文中我们已经知道，Unity为不同字号的字符生成不同的纹理图，造成极大浪费。而且频繁使用会造成内存碎片。
  
  
-- 不要用**OutLine组件**
+- 不要用**OutLine组件、shadow组件**
   - 实现效率之低、overdraw之高令人发指。
   
   

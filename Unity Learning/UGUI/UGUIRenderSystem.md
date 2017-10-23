@@ -1,4 +1,4 @@
-# UGUI 渲染系统
+# 浅析UGUI的渲染机制
 
 本篇简要介绍UGUI的渲染方面的概念、常用技巧和优化方法。可能写的不太系统，而意在写一些重点。
 
@@ -121,9 +121,11 @@ drawcall太高，意味着有频繁地改变渲染状态，这是很慢的操作
 
 
 ## （四）fillRate
-这个是显卡里面的概念，这里单独拎出来，是因为overdraw导致的fillRate过大问题通常是移动设备GPU渲染的瓶颈（而不是顶点数太多）。
+这个是显卡里面的概念，这里单独拎出来，是因为overdraw导致的fillRate过大问题通常是移动设备GPU渲染的瓶颈（而不是顶点数太多）。关于这块的优化会单独抽一篇文章去说，这里给出fillrate的公式。
 
-此概念可细分为pixel fillrate和texture fillrate。
+> fillRate = 像素数 x overdraw x shader复杂度
+
+另外，fillrate的概念可细分为pixel fillrate和texture fillrate。
 
 ####pixel fillrate
 显卡每秒可渲染到屏幕上的像素点数量。有点像带宽的概念。在片元着色性能成为显卡性能评估标准之前，像素填充率一直是最准确的标准之一。
@@ -136,6 +138,8 @@ drawcall太高，意味着有频繁地改变渲染状态，这是很慢的操作
 
 
 # 优化技巧举例
+这里是指写几个简单明了的技巧，UGUI还有诸多方面的全面优化参见后文。
+
 ## （一）隐藏UI的正确方法
 如果用setactive（false），会导致所在canvas的VBO数据失效。所以再次setactive（true）的时候，会导致整个canvas去`rebuild`和`rebatch`，从而对CPU造成负担。
 
