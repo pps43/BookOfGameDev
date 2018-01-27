@@ -6,7 +6,3 @@
 http://blog.csdn.net/xufeng0991/article/details/51363790
 
 http://www.skywind.me/blog/archives/131
-
-# 热更新
-代码逻辑热更新：lua
-资源更新，见unity learning的assetbundle
