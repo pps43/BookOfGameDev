@@ -17,8 +17,9 @@
   * \[组合还是继承\]
   * \[状态机\]
   * \[消息机制\]
-  * [MVP架构模式](Game Code/Game Programming Pattern/MVPArchitecturePattern.md)
-  * \[ECS架构模式\]
+  * [MVP架构模式](Game Code/Game Programming Pattern/MVP_ArchitecturePattern.md)
+  * [ECS架构模式](Game Code/Game Programming Pattern/ECS_ArchitecturePattern.md)
+
   
   
 * [网络游戏架构方案](Game Code/Network Related/README.md)
