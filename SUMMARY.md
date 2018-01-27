@@ -1,10 +1,10 @@
 # Summary
 
-## 零、缘
+## 零、再续前缘
 
 * [为什么会有此书](README.md)
 
-## 一、技术
+## 一、游戏研发
 
 ## 模式与架构
 
@@ -62,7 +62,6 @@
 * [入门常识](Rendering/Intro/README.md)
 * [Unity Shader](Rendering/Unity Shader/README.md)
 
-## 二、道
+## 二、游戏设计
 
-## 三、悟
 
