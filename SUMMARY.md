@@ -10,6 +10,7 @@
 
 * [导言](Game Code/README.md)
 
+---
 
 * [游戏开发中的设计模式](Game Code/Game Programming Pattern/README.md)
   * \[单例\]
@@ -20,10 +21,10 @@
   * [MVP 架构模式](Game Code/Game Programming Pattern/MVP_ArchitecturePattern.md)
   * [ECS 架构模式](Game Code/Game Programming Pattern/ECS_ArchitecturePattern.md)
 
-  
-  
+---
+
 * [网络游戏架构方案](Game Code/Network Related/README.md)
-  * 帧同步
+  * [帧同步](Game Code/Network Related/FrameLockStepSync.md)
 
 ## 基于 Unity - C\# 开发
 
@@ -63,5 +64,4 @@
 * [Unity Shader](Rendering/Unity Shader/README.md)
 
 ## 二、游戏设计
-
 
