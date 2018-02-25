@@ -1,4 +1,4 @@
-集合ppt补充
+我的优化ppt还没同步到gitbook，另外要补充以下内容。
 
 
 - 删除不用的代码
@@ -7,6 +7,15 @@
 - 精简Resource文件夹，非多处多次创建的物体，都做到场景里，而不是放到Resource里动态加载。
 > 不这么做的最大问题不是包体大小，而是会影响启动速度。具体来说，启动时，Unity会载入场景和**所有Resource目录下的Objects**，为其分配InstanceID。
 
+- 零碎对象的Update逻辑由一个Update Manager统一驱动和管理 （https://docs.unity3d.com/Manual/BestPracticeUnderstandingPerformanceInUnity8.html）
+> 为的是减少零碎的Monobehaviour脚本中调用Update, FixedUpdate and LateUpdate等函数，因为每个物体每帧调用都需要**从c#层调用native层**（Unity维护了一个列表依次遍历），每帧都这样消耗很可观（初始化Prefab的卡顿也是因为调用每个组件上的Awake和Onenable需要从c#层访问native层）。
+更好的方法是：有一个 Update manager，继承Monobehaviour，在它的Update()中去遍历所有对象的某个函数。这样管理对象是否每帧去执行某个逻辑也变得高效和灵活。注意：如果用委托来绑定函数调用关系，切忌不要简单的使用 `+=`，这样效率很低。
+
+
+
+
+待阅读 托管堆内存
+https://docs.unity3d.com/Manual/BestPracticeUnderstandingPerformanceInUnity4-1.html
 
 ## UI scrollView
 优化点：

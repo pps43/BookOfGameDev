@@ -50,7 +50,9 @@ Unity自带的Profiler工具十分强大，尤其是可以用于真机测试，�
  - Device.Present
   - Present.BlitToCurrentFB
   - Present.SecondarySurfaces
-> [原文链接](http://blog.sina.com.cn/s/blog_155a1f2470102wa88.html)若开启了多线程渲染，则出现的是Gfx.WaitForPresent，其实二者表示的含义都是一样的：等待GPU以进行下一次渲染。出现这种情况有以下原因：（1）开了垂直同步（ios无法关闭垂直同步，只能设置帧率），则可能是CPU开销远小于GPU开销，导致等待VSync；也可能是CPU开销很高，错过了VSync，只有等待下一次VSync（`常见于加载大AB包，Resource.Load加载大纹理`）（2）GPU开销很高，CPU要等待GPU上一帧渲染完成。。。最终结论是该项耗时无法直接优化，根本原因在别处。
+> [原文链接](https://blog.uwa4d.com/archives/presentandsync.html)若开启了多线程渲染，则出现的是Gfx.WaitForPresent，其实二者表示的含义都是一样的：等待GPU以进行下一次渲染。出现这种情况有以下原因：
+（1）开了垂直同步（ios无法关闭垂直同步，只能设置帧率），则可能是CPU开销远小于GPU开销，导致等待VSync；也可能是CPU开销很高，错过了VSync，只有等待下一次VSync（`常见于加载大AB包，Resource.Load加载大纹理`）
+（2）GPU开销很高，CPU要等待GPU上一帧渲染完成。。。最终结论是该项耗时无法直接优化，根本原因在别处。
 
 - Graphics.Blit
 > 通常与屏幕后处理的shader相关。
