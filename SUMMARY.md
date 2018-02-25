@@ -46,6 +46,7 @@
   * [UGUI优化高级篇：纹理压缩](Unity Learning/UGUI/UGUIOptimization_TextureCompression.md)
   * [实用技巧](Unity Learning/UGUI/UGUITipsOnHowTo.md)
 * [性能优化](Unity Learning/PerformanceOptimizition/README.md)
+  * [到底是优化什么](Unity Learning/PerformanceOptimizition/WhatToOptimize.md)
   * [Profiler的正确解读方法](Unity Learning/PerformanceOptimizition/HowToUseProfilerCorrectly.md)
 
 ## 结合Lua开发
