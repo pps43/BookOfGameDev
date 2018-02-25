@@ -56,6 +56,7 @@
   * [愉快地在Unity里与Xlua玩耍](Lua/Unity with Xlua/CodeHappierWithXlua.md)
   * [Xlua Examples学习（一）](Lua/Unity with Xlua/XluaExampleNotes.md)
   * [Xlua Examples学习（二）](Lua/Unity with Xlua/XluaExampleNotes02.md)
+  * [更多有关Xlua](Lua/Unity with Xlua/XluaMoreInfo.md)
 * 热更新
 
 ## 渲染
