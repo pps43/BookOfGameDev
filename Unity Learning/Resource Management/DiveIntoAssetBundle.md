@@ -1,11 +1,34 @@
 # 浅析Assetbundle机制
 
 ---
+- [浅析Assetbundle机制](#assetbundle)
+  - [一、概要](#)
+    - [定义](#)
+    - [优点](#)
+    - [缺点](#)
+    - [内部结构](#)
+    - [关于 LZMA 和 LZ4 算法](#lzma--lz4)
+  - [二、生成ab包](#ab)
+    - [老方法](#)
+    - [新方法（unity 2017后使用）](#unity-2017)
+    - [实验中的方法（预计unity 2018.3后使用）](#unity-20183)
+  - [三、ab包的内部结构](#ab)
+    - [AssetBundles](#assetbundles)
+    - [AssetBundles.manifest](#assetbundlesmanifest)
+    - [myprefabs](#myprefabs)
+    - [myprefabs.manifest](#myprefabsmanifest)
+  - [四、加载/管理/卸载ab包](#ab)
+    - [加载ab包](#ab)
+    - [加载时处理ab包依赖](#ab)
+    - [AssetBundle管理器](#assetbundle)
+    - [ab包小工具](#ab)
+  - [五、加载ab包中的Object](#abobject)
+  - [例子](#)
 
 1. [官方深度详解 best practice](https://unity3d.com/learn/tutorials/topics/best-practices/assetbundle-fundamentals?playlist=30089)
 2. [官方指南系列 manual](https://docs.unity3d.com/Manual/AssetBundlesIntro.html)
 
-## （一）概要
+## 一、概要
 
 ### 定义
 
@@ -46,11 +69,10 @@ LZMA比LZ4压缩/解压速度更慢，但压缩率更高（压缩后的文件更
 
 详见[这里](https://catchchallenger.first-world.info/wiki/Quick_Benchmark:_Gzip_vs_Bzip2_vs_LZMA_vs_XZ_vs_LZ4_vs_LZO)。
 
-## （二）生成ab包
-
-* 资源对应到ab包（在Unity编辑器中直接完成）
-  * Unity 5后加入了`variant`子参数，可以准备高清、低清
-* 调用ab包打包脚本（这里必须自己写，并且只能放到 `Editor` 目录下）
+## 二、生成ab包
+### 老方法
+* 资源归属到ab包（在Unity编辑器inspector窗口下方完成）
+* 调用打包脚本构建ab包（这里必须自己写，并且只能放到 `Editor` 目录下）
 
 ```csharp
 using UnityEditor;
@@ -82,9 +104,15 @@ public class CreateAssetBundles
 }
 ```
 
-### 
+### 新方法（unity 2017后使用）
+- 下载插件 `Assetbundle Browser` 完成可视化管理当前有哪些ab包，是否有重复打包现象。并且可以一键生成ab包。
+- 下载插件 `Asset Graph Tool` 完成复杂打包流程的可视化？
 
-## （三）ab包的内部结构
+
+### 实验中的方法（预计unity 2018.3后使用）
+Addressable Asset，和之前的不太兼容了。
+
+## 三、ab包的内部结构
 
 按照上面的打ab包脚本，从菜单中执行后，在AssetBundles文件夹中有`2*(n+1)`个文件（n是自定义的ab包的数量，ab包必须全部小写）。例如我们有myprefabs和mysprites两个ab包，那么会生成：
 
@@ -169,7 +197,7 @@ Dependencies:
 - F:/TestProjects/TestAssetBundle/TestAssetBundle/Assets/AssetBundles/mysprites
 ```
 
-## （四）加载/管理/卸载ab包
+## 四、加载/管理/卸载ab包
 
 ### 加载ab包
 
@@ -266,7 +294,7 @@ Unity官方制作的AssetBundle管理器，既包含了下载和管理的逻辑�
 
 另外，为了使工作流更可视化，Unity正尝试推出新的ab包插件，详见： [https://blogs.unity3d.com/2016/10/25/new-assetbundle-graph-tool-prototype/](https://blogs.unity3d.com/2016/10/25/new-assetbundle-graph-tool-prototype/)
 
-## （五）加载ab包中的Object
+## 五、加载ab包中的Object
 
 总的来说有同步和异步两种思路，每种思路下各有3个API：加载全部，加载部分，加载一个。
 
