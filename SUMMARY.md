@@ -1,16 +1,12 @@
 # Summary
 
-## 零、再续前缘
-
 * [为什么会有此书](README.md)
 
-## 一、游戏研发
 
 ## 模式与架构
 
 * [导言](Game Code/README.md)
 
----
 
 * [游戏开发中的设计模式](Game Code/Game Programming Pattern/README.md)
   * \[单例\]
@@ -26,7 +22,7 @@
 * [网络游戏架构方案](Game Code/Network Related/README.md)
   * [帧同步](Game Code/Network Related/FrameLockStepSync.md)
 
-## 基于 Unity - C\# 开发
+## Unity和C#
 
 * [导言](Unity Learning/README.md)
 * [编辑器扩展](Unity Learning/IDE/Editor Extension/README.md)
@@ -34,6 +30,8 @@
 * \[分析工具\]
   * \[性能分析与真机调试\] --包含第三方（高通）分析工具trepn
   * 反编译
+* [碰撞和物理]
+  * 
 * [资源管理](Unity Learning/Resource Management/README.md)
   * [浅析Unity资源](Unity Learning/Resource Management/DiveIntoUnityAsset.md)
   * [浅析Assetbundle机制](Unity Learning/Resource Management/DiveIntoAssetBundle.md)
@@ -48,8 +46,12 @@
 * [性能优化](Unity Learning/PerformanceOptimizition/README.md)
   * [到底是优化什么](Unity Learning/PerformanceOptimizition/WhatToOptimize.md)
   * [Profiler的正确解读方法](Unity Learning/PerformanceOptimizition/HowToUseProfilerCorrectly.md)
+* [前沿功能]
+  * [TileMap和Brush]
+  * [Cinemachine]
+  * [IK]
 
-## 结合Lua开发
+## Lua
 
 * [导言](Lua/README.md)
 * [Lua介绍](Lua/Lua Language/First Notes About Lua.md)
@@ -64,6 +66,3 @@
 
 * [入门常识](Rendering/Intro/README.md)
 * [Unity Shader](Rendering/Unity Shader/README.md)
-
-## 二、游戏设计
-
