@@ -2,9 +2,9 @@
 
 ---
 - [深入剖析Unity协程](#%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90unity%E5%8D%8F%E7%A8%8B)
-    - [开胃菜：从`IEnumerator/IEnumerable` 到`Yield`](#%E5%BC%80%E8%83%83%E8%8F%9C%E4%BB%8Eienumeratorienumerable-%E5%88%B0yield)
-    - [主食：Unity协程的实现](#%E4%B8%BB%E9%A3%9Funity%E5%8D%8F%E7%A8%8B%E7%9A%84%E5%AE%9E%E7%8E%B0)
-    - [甜点： 带返回值的协程](#%E7%94%9C%E7%82%B9-%E5%B8%A6%E8%BF%94%E5%9B%9E%E5%80%BC%E7%9A%84%E5%8D%8F%E7%A8%8B)
+    - [开胃菜：从`IEnumerator/IEnumerable` 到`Yield`](#%E5%BC%80%E8%83%83%E8%8F%9C%EF%BC%9A%E4%BB%8Eienumeratorienumerable-%E5%88%B0yield)
+    - [主菜：Unity协程的实现](#%E4%B8%BB%E8%8F%9C%EF%BC%9Aunity%E5%8D%8F%E7%A8%8B%E7%9A%84%E5%AE%9E%E7%8E%B0)
+    - [甜点： 带返回值的协程](#%E7%94%9C%E7%82%B9%EF%BC%9A-%E5%B8%A6%E8%BF%94%E5%9B%9E%E5%80%BC%E7%9A%84%E5%8D%8F%E7%A8%8B)
 ---
 
 
@@ -27,7 +27,7 @@ while (iterator.MoveNext()) 
 }
 ```
 
-细心的读者会发现，为什么迭代器要涉及`IEnumerable` 和 `IEnumerator`两个接口呢？为什么不可以直接在`dataSource`中实现`MoveNext`和`Current`？
+细心的读者会发现，为什么迭代器要涉及`IEnumerable` 和 `IEnumerator`两个接口而不是直接在`dataSource`中实现`MoveNext`和`Current`？
 
 这正是迭代器模式的要点。这个模式将存储数据和遍历数据的**职责分离**，在c#中对应为`IEnumerable` 和 `IEnumerator`两个接口（其实还有两个泛型接口：IEnumerable\<T>, IEnumerator\<T>，不加 T 的话则默认为IEnumerator\<object>）。本文对该模式不做展开讨论。
 
@@ -140,7 +140,7 @@ public class DataSource : IEnumerable
 
 
 
-## 主食：Unity协程的实现
+## 主菜：Unity协程的实现
 前一节告诉我们：在返回值为IEnumerator/IEnumerable的函数中，yield return [value] 可以被展开，实现迭代器的效果。[value]是本次`MoveNext()`的返回值Current，可以是object类型。下次调用`MoveNext()`时，从刚才的yield之后的语句开始执行。
 
 Unity利用这个特性实现了协程。协程本篇就不介绍了，这方面已有不少笔墨，亦超出本篇的讨论范围。继续刚才话题，在Unity的协程中，返回值Current并不能直接被使用者获得，而是内部进行了处理。
@@ -155,28 +155,73 @@ Unity利用这个特性实现了协程。协程本篇就不介绍了，这方面
 
 ![yield_ws](/assets/yield_waitSecond.png)
 
-看完后觉得信息量不大。Unity到底用了什么魔法？网上[有篇博客](http://twistedoakstudios.com/blog/Post83_coroutines-more-than-you-want-to-know)给出了自己的猜想（看完源码后发现他猜的真准……）
+看完后觉得信息量不大。Unity到底用了什么魔法？网上[有篇博客](http://twistedoakstudios.com/blog/Post83_coroutines-more-than-you-want-to-know)给出了自己的猜想（看完源码后发现这位仁兄猜的真准……）
 
 
 > When you make a call to `StartCoroutine(IEnumerator)` you are handing the resulting IEnumerator to the underlying unity engine.
 
-`StartCoroutine()` builds a `Coroutine` object, runs the first step of the IEnumerator and gets the first yielded value. That will be one of a few things, either "break", some `YieldInstruction` like `"Coroutine", "WaitForSeconds", "WaitForEndOfFrame", "WWW"`, or something else unity doesn't know about. The Coroutine is **stored** somewhere for the engine to look at later.
+> `StartCoroutine()` builds a `Coroutine` object, runs the first step of the IEnumerator and gets the first yielded value. That will be one of a few things, either "break", some `YieldInstruction` like `"Coroutine", "WaitForSeconds", "WaitForEndOfFrame", "WWW"`, or something else unity doesn't know about. The Coroutine is **stored** somewhere for the engine to look at later.
 
-... At various points in the frame, Unity goes through the stored Coroutines and checks the Current value in their IEnumerators.
+> ... At various points in the frame, Unity goes through the stored Coroutines and checks the Current value in their IEnumerators.
 
- - `WWW` - after Updates happen for all game objects; check the isDone flag. If true, call the IEnumerator's MoveNext() function;
- - `WaitForSeconds` - after Updates happen for all game objects; check if the time has elapsed, if it has, call MoveNext();
- - `null` or some unknown value - after Updates happen for all game objects; Call MoveNext()
- - `WaitForEndOfFrame` - after Render happens for all cameras; Call MoveNext
+>  - `WWW` - after Updates happen for all game objects; check the isDone flag. If true, call the IEnumerator's MoveNext() function;
+> - `WaitForSeconds` - after Updates happen for all game objects; check if the time has elapsed, if it has, call MoveNext();
+> - `null` or some unknown value - after Updates happen for all game objects; Call MoveNext()
+> - `WaitForEndOfFrame` - after Render happens for all cameras; Call MoveNext
 
-`MoveNext` returns false if the last thing yielded was "break" of the end of the function that returned the IEnumerator was reach. If this is the case, unity removes the IEnumerator from the **coroutines list**.
+> `MoveNext` returns false if the last thing yielded was "break" of the end of the function that returned the IEnumerator was reach. If this is the case, unity removes the IEnumerator from the **coroutines list**.
 
 
-
+由于上面已经概括了Unity实现协程的思想，这里稍作补充，源码就不贴了：
+- `StartCoroutine`创建了`Coroutine`对象`coroutine`，该对象保存了`yield return`展开后的IEnumerator对象指针、`MoveNext`和`Current`的函数指针，结束后应当唤醒的协程的指针、指向调用者`Monobehaviour`的指针等等，并将该对象`coroutine`保存到该`Monobehaviour`的活跃协程列表中。立即调用了`coroutine.Run()`。
+- `coroutine.Run()`首先尝试调用`InvokeMoveNext`，若发现当前协程执行完成，则会尝试调用应当唤醒的协程，否则才真正执行`MoveNext`，获得返回值`monoWait`。
+- 根据返回值`monoWait`的类型，进行不容的处理。通常是传递不同的参数给`CallDelayed`函数。对于返回值是`Coroutine`类型（c#那边用了协程嵌套），会将这个返回值的结束后应唤醒的协程的指针指向当前的`coroutine`。笔者这里发现了一种不太常见的用法：当返回值为`IEnumerator`类型（c#那边没有用StartCoroutine去开启嵌套协程，而是直接在yield return 后调用）时，Unity会自动为其创建一个`Coroutine`对象并初始化，效果同样。
+- `CallDelayed`函数传入了运行协程对象的方法、qingli协程对象的方法、清理条件等。函数内部创建了一个`Callback`对象，加到了全局的`DelayedCallManager`的列表中。游戏主循环会在每一帧调用`DelayedCallManager.Update`，在满足一定条件时（比如对应的Monobehaviour对象还没被销毁等）调用`Callback`对象的方法。
 
 
 ## 甜点： 带返回值的协程
 
-以上。
+看到这里，似乎意犹未尽。读者想必会问，除了知道如何用`yield`实现自己的可迭代的类，以及Unity利用`yield`实现协程的原理外，对我日常代码有什么立竿见影的作用？这里就介绍一个小技巧：**自定义可返回值的协程。**
 
-おそまつ！
+上一节我们知道，Unity内部将`yield return`的结果进行了处理，但常常我们也想去访问协程的结果，比如玩家发起坐下请求。结果是超时了？还是坐下失败了？
+```cs
+//期望的用法
+SitDownCoroutine cd = new SitDownCoroutine(SitDown(seatID, roomID, sitMode));
+yield return cd.coroutine;
+Debug.Log("result is " + cd.result);  //  'success' or 'fail' or 'timeout'
+```
+
+为了实现类似效果，笔者在经历的项目中见过一些复杂的写法，其思想是自己模拟Unity的这套运行协程的机制。不过由于精力有限，往往只能支持简化的功能。[这篇帖子](https://answers.unity.com/questions/24640/how-do-i-return-a-value-from-a-coroutine.html)介绍了一种相对简单有效的方法。笔者这里也提供一种方法，利用了Unity5.3以后提供的(`CustomYieldInstruction`)[https://docs.unity3d.com/ScriptReference/CustomYieldInstruction.html]功能。
+
+```cs
+public enum RetCode
+    {
+        succ,
+        fail,
+        timeout,
+    }
+    public class SitDownCoroutine:CustomYieldInstruction
+    {
+        public RetCode ret { get; private set; }
+        private bool _finished = false;
+
+        public void onResponse(RetCode retCode)
+        {
+            ret = retCode;
+            _finished = true;
+        }
+
+        public override bool keepWaiting
+        {
+            get
+            {
+                return !_finished;
+            }
+        }
+
+    }
+
+```
+
+
+招待不周（おそまつ）！
