@@ -8,21 +8,22 @@
 * [导言](Game Code/README.md)
 
 * [游戏编程模式](Game Code/Game Programming Pattern/README.md)
-  * \[单例\]
-  * \[组合还是继承\]
+  * 单例
+  * 工厂
+  * 对象池
   * 命令模式
-    * 如何实现解耦的输入系统
+    * 一个好用的输入系统
   * 状态模式
-    * 实现一个好用的状态机
-  * 消息机制
-    * 实现的一个好用的消息分发系统
+    * 一个好用的状态机
+  * 观察者模式
+    * 一个好用的消息分发系统
+  * 组合vs继承
   * [MVP 架构模式](Game Code/Game Programming Pattern/MVP_ArchitecturePattern.md)
   * [ECS 架构模式](Game Code/Game Programming Pattern/ECS_ArchitecturePattern.md)
 
 
-* [网络游戏架构](Game Code/Network Related/README.md)
+* [网络游戏架构(TODO)](Game Code/Network Related/README.md)
   * [帧同步](Game Code/Network Related/FrameLockStepSync.md)
-
 
 
 ## Unity 引擎相关
@@ -31,17 +32,20 @@
 
 
 * [UI系统](Unity Learning/UGUI/README.md)
-  * [UGUI布局系统](Unity Learning/UGUI/UGUILayoutSystem.md)
-  * [UGUI消息系统](Unity Learning/UGUI/UGUIEventSystem.md)
+  * [UGUI布局系统(TODO)](Unity Learning/UGUI/UGUILayoutSystem.md)
+  * [UGUI消息系统(TDOO)](Unity Learning/UGUI/UGUIEventSystem.md)
   * [UGUI渲染机制](Unity Learning/UGUI/UGUIRenderSystem.md)
   * [文本优化](Unity Learning/UGUI/UGUIOptimization_TextFont.md)
-  * [图像优化：纹理压缩](Unity Learning/UGUI/UGUIOptimization_TextureCompression.md)
-  * [UGUI代码小技巧](Unity Learning/UGUI/UGUITipsOnHowTo.md)
+  * [图像优化：纹理压缩(TODO)](Unity Learning/UGUI/UGUIOptimization_TextureCompression.md)
+  * [UGUI代码小技巧(TODO)](Unity Learning/UGUI/UGUITipsOnHowTo.md)
 
 
-* 动画系统
+* 动画系统(TODO)
+  * 人型动画高级功能:IK, TargetMatch, BT等
 
-* 寻路和避障
+* 寻路系统(TODO)
+  * 动态增删地形的NavyMesh寻路
+  * 避障 RVO
 
 
 * [资源管理](Unity Learning/Resource Management/README.md)
@@ -54,7 +58,7 @@
 * 异步编程
   * [深入剖析Unity协程](Unity Learning/Coroutine/DiveIntoUnityCoroutine.md)
   * [Unity协程实用技巧](Unity Learning/Coroutine/CodeHappilyWithUnityCoroutine.md)
-  * [实现一个好用的异步动作队列](Unity Learning/Coroutine/CreateUsefulActionSequence.md)
+  * [一个好用的异步动作队列](Unity Learning/Coroutine/CreateUsefulActionSequence.md)
 
 
 * Lua热更新(TODO)
@@ -73,9 +77,11 @@
 * 分析工具(TODO)
   * 性能分析与真机调试 --包含第三方（高通）分析工具trepn
   * 反编译 ILSpy/dnSpy
+  * 一个好用的 overdraw 分析工具（Computer shader）
 
 * [性能优化](Unity Learning/PerformanceOptimizition/README.md)
   * [到底优化什么](Unity Learning/PerformanceOptimizition/WhatToOptimize.md)
+  * [移动设备的硬件架构和瓶颈(TODO)]
   * [Unity Profiler正确解读方法](Unity Learning/PerformanceOptimizition/HowToUseProfilerCorrectly.md)
 
 

@@ -1,9 +1,6 @@
-# 大菠萝开发中用到的技巧
+TODO
 
-
-
-# ob需求中用到的技巧
-- ###想知道slider里面的handle的拖动事件。
+#想知道slider里面的handle的拖动事件。
 
 在外面监听不行，因为自带的slider脚本会吃掉begindrag,ondrag,enddrag。在最里面的handle上通过实现接口的方式也不行，这样自带的slider会收不到事件。
 
