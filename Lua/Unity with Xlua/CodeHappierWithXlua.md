@@ -22,8 +22,6 @@
 - `Command line`不填也可以，除非你想从命令行执行你的lua代码。
 新建工程后，右键`Add item`添加一个`hello.lua`，这就可以了。
 - （3）在Unity中的Xlua菜单下选择`ExportluaSyntax`，重启VS，试着在hello.lua中打出`xlua.`，应当有完善的提示了。
-### 调试和错误定位（待补充）
 
+### 调试和错误定位（TODO）
 
-## II. 辅助开发工具（待从workflowy中补充）
-- notepad++

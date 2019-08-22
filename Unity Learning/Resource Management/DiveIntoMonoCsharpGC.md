@@ -127,9 +127,7 @@ struct是在栈上的，更快，而且不存在GC。什么时候用呢？
 * 是否确信该类型永远不可能有子类？
 * 是否确信该类型永远不可能具有多态行为？
 
-## Xlua中对复杂值类型GC的处理
 
-【补充】
 
 ## IDisposable与Unmanaged Resources
 

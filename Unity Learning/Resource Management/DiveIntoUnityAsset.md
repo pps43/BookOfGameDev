@@ -1,4 +1,4 @@
-# 浅析Unity资源
+# 深入Unity资源（Asset）
 
 Unity资源统称为`Asset`。本节讨论四个话题：Asset 和 Unity.Object  
 的概念和内涵；File Guid, local ID 和 Instance ID的由来；MonoBehavior, ScriptableObject 和普通 c\# 类的区别和应用场景；Unity.Object的资源生命周期（主要是加载和卸载）。

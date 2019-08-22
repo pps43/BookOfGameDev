@@ -32,7 +32,7 @@ void Start () {
 
 
 ---
-#### 【Unity知识补充】`Resources` vs `StreamingAssets`
+#### Unity知识：`Resources` vs `StreamingAssets`
 **Resources 和 StreamingAssets 相同点**
 
 - 都会将文件夹中的资源打包
