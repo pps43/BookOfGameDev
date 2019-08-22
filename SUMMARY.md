@@ -7,7 +7,7 @@
 
 * [导言](Game Code/README.md)
 
-* [游戏编程模式](Game Code/Game Programming Pattern/README.md)
+* [游戏编程模式]
   * 单例
   * 抽象工厂
   * 对象池
