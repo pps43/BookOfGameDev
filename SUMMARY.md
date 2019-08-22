@@ -12,12 +12,12 @@
   * \[组合还是继承\]
   * 命令模式
     * 如何实现解耦的输入系统
-  * \[状态模式\]
-    * 自己实现的一个较完善的状态机
-  * \[消息机制\]
-    * 自己实现的一个较完善的消息系统
-  * [MVP 架构模式（适合UI）](Game Code/Game Programming Pattern/MVP_ArchitecturePattern.md)
-  * [ECS 架构模式（不适合UI）](Game Code/Game Programming Pattern/ECS_ArchitecturePattern.md)
+  * 状态模式
+    * 实现一个好用的状态机
+  * 消息机制
+    * 实现的一个好用的消息分发系统
+  * [MVP 架构模式](Game Code/Game Programming Pattern/MVP_ArchitecturePattern.md)
+  * [ECS 架构模式](Game Code/Game Programming Pattern/ECS_ArchitecturePattern.md)
 
 
 * [网络游戏架构](Game Code/Network Related/README.md)
@@ -32,13 +32,8 @@
   * \[可视化与反射机制\]  --知乎上和km上有文章
 
 
-* \[分析工具\]
-  * \[性能分析与真机调试\] --包含第三方（高通）分析工具trepn
-  * 反编译 ILSpy（yield有用到）
-
-
-* [协程]
-  * [深入剖析Unity协程：从Yield到StartCoroutine](Unity Learning/Coroutine/DiveIntoUnityCoroutine.md)
+* 协程
+  * [深入剖析Unity协程](Unity Learning/Coroutine/DiveIntoUnityCoroutine.md)
   * [Unity协程实用技巧](Unity Learning/Coroutine/CodeHappilyWithUnityCoroutine.md)
 
 
@@ -64,6 +59,9 @@
   * [实用技巧](Unity Learning/UGUI/UGUITipsOnHowTo.md)
 
 
+* 分析工具
+  * \[性能分析与真机调试\] --包含第三方（高通）分析工具trepn
+  * 反编译 ILSpy（yield有用到）
 
 * [性能优化](Unity Learning/PerformanceOptimizition/README.md)
   * [到底是优化什么](Unity Learning/PerformanceOptimizition/WhatToOptimize.md)
