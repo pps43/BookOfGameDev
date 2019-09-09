@@ -67,28 +67,28 @@
   * [一个好用的异步动作队列](Unity Learning/Coroutine/CreateUsefulActionSequence.md)
 
 
-* Unity 热更新(TODO)
+* Unity 热更新
   * [Lua简介](Lua/Lua Language/First Notes About Lua.md)
   * 在Unity里使用Xlua
     * [Unity 里使用 Xlua](Lua/Unity with Xlua/CodeHappierWithXlua.md)
     * [Xlua Examples学习（一）](Lua/Unity with Xlua/XluaExampleNotes.md)
     * [Xlua Examples学习（二）](Lua/Unity with Xlua/XluaExampleNotes02.md)
     * [更多有关Xlua](Lua/Unity with Xlua/XluaMoreInfo.md)
-  * 其他热更新方案
+  * (TODO)其他热更新方案
 
 
-* [编辑器扩展(TODO)](Unity Learning/IDE/Editor Extension/README.md)
-  * 可视化与反射机制
-  * 用Flutter、SwiftUI的语法写Unity编辑器插件
+* [编辑器扩展](Unity Learning/IDE/Editor Extension/README.md)
+  * (TODO)可视化与反射机制
+  * (TODO)用Flutter、SwiftUI的语法写Unity编辑器插件
 
-* 分析工具(TODO)
-  * 性能分析与真机调试 --包含第三方（高通）分析工具trepn
-  * 反编译 ILSpy/dnSpy
-  * 一个好用的 overdraw 分析工具（Computer shader）
+* 分析工具
+  * (TODO) 性能分析与真机调试 profiler/trepn
+  * (TODO) 反编译 ILSpy/dnSpy
+  * [一个好用的 overdraw 分析工具]()
 
 * [性能优化](Unity Learning/PerformanceOptimizition/README.md)
   * [到底优化什么](Unity Learning/PerformanceOptimizition/WhatToOptimize.md)
-  * [移动设备的硬件架构和瓶颈(TODO)]
+  * [(TODO)移动设备的硬件架构和瓶颈]
   * [Unity Profiler正确解读方法](Unity Learning/PerformanceOptimizition/HowToUseProfilerCorrectly.md)
 
 * 项目规范和工作流(TODO)
@@ -97,7 +97,7 @@
   * 目录命名和组织
   * Unity中如何进行TDD测试驱动开发
   * Git还是Svn
-  * 思考：第三方插件和编辑器工具
+  * 对第三方插件的思考
 
 
 
