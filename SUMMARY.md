@@ -7,7 +7,7 @@
 
 * [导言](CodePattern/README.md)
 
-* [游戏编程模式]
+* 游戏编程模式
   * 单例
   * 抽象工厂
   * 对象池
@@ -22,10 +22,10 @@
   * [ECS 架构模式](CodePattern/ECS_ArchitecturePattern.md)
 
 
-* [(TODO)网络游戏架构](Network/README.md)
-  * 前后端网络模块方案
-  * 状态同步
-  * [帧同步](Network/FrameLockStepSync.md)
+* [网络游戏架构](Network/README.md)
+  * (TODO)前后端网络模块方案
+  * (TODO)状态同步
+  * [(TODO)帧同步](Network/FrameLockStepSync.md)
 
 
 ## 基于 Unity 引擎开发
