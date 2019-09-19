@@ -127,7 +127,7 @@ drawcall太高，意味着有频繁地改变渲染状态，这是很慢的操作
 
 另外，fillrate的概念可细分为pixel fillrate和texture fillrate。
 
-####pixel fillrate
+#### pixel fillrate
 显卡每秒可渲染到屏幕上的像素点数量。有点像带宽的概念。在片元着色性能成为显卡性能评估标准之前，像素填充率一直是最准确的标准之一。
 
 #### texture fillrate
