@@ -90,14 +90,15 @@
   * [到底优化什么](Unity/PerformanceOptimizition/WhatToOptimize.md)
   * [(TODO)移动设备的硬件架构和瓶颈]
   * [Unity Profiler正确解读方法](Unity/PerformanceOptimizition/HowToUseProfilerCorrectly.md)
+  * [Unity 性能优化实战经验]
 
-* 项目规范和工作流(TODO)
-  * 美术标准如何确定
-  * 游戏场景规范：相机、层级、碰撞矩阵
-  * 目录命名和组织
-  * Unity中如何进行TDD测试驱动开发
-  * Git还是Svn
-  * 对第三方插件的思考
+* [项目规范和工作流](Specs/README.md)
+  * (TODO)美术标准如何确定
+  * (TODO)游戏场景规范：相机、层级、碰撞矩阵
+  * (TODO)目录命名和组织
+  * (TODO)Unity中如何进行TDD测试驱动开发
+  * (TODO)Git还是Svn
+  * (TODO)对第三方插件的思考
 
 
 
