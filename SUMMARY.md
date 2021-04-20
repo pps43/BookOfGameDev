@@ -1,6 +1,6 @@
 # Summary
 
-* [写在前面的话](README.md)
+* [自序](README.md)
 
 ## 游戏逻辑开发和优化
 * 模式与架构
