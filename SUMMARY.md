@@ -4,17 +4,8 @@
 
 ## 游戏逻辑开发和优化
 * 模式与架构
-  * 游戏实用设计模式
-    * 单例
-    * 抽象工厂
-    * 对象池
-    * 命令模式
-      * 一个简易的输入系统
-    * 状态模式
-      * 一个简易的状态机
-    * 观察者模式
-      * 一个简易的消息分发系统
-  * 🟡组合，还是继承
+  * [🟢六个必备设计模式](GameLogic/Pattern/CommonPatternsCollection.md)
+  * 🟡组合还是继承，这是个问题
   * [MVP 架构模式](GameLogic/Pattern/MVP.md)
   * [ECS 架构模式](GameLogic/Pattern/ECS.md)
   * [网络游戏架构](GameLogic/Network/README.md)
@@ -57,18 +48,18 @@
     * 🔴目录命名和组织
     * 🔴Unity中如何进行TDD测试驱动开发
     * 🔴Git还是Svn
-    * 🔴对第三方插件的思考
   * 其他  
     * 🔴人型动画高级功能
     * 🔴碰撞连续性和顺序性
-    * 🔴碰撞矩阵最优实践
+    * 🔴碰撞矩阵
 
 
 ## 游戏引擎开发
 * [关于游戏引擎开发这件事](GameEngine/AboutGameEngine.md)
-* 渲染
-* 动画
-* 物理
+* 基础系统
+* 渲染引擎
+* 动画引擎
+* 物理引擎
 * 游戏AI
 * 工具链
 
