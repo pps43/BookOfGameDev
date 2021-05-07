@@ -92,7 +92,7 @@ Unreal 5 的新特性：`Nanite` (虚拟几何体，运行时自动LOD)，`Lumen
 ## 游戏之外，以及未来
 
 目前游戏引擎已经强势涉足的领域还有：
-- 汽车设计、制造、展示、智能算法训练、人机交互界面；
+- 汽车设计、制造、展示、[自动驾驶仿真](https://autodrive.readthedocs.io/en/latest/chapters/simulator/comparison.html#id2)、人机交互界面；
 - 建筑设计、家装设计和展示；
 - 地理信息系统、城市交通规划；
 - 博物馆等展陈项目；
@@ -105,7 +105,7 @@ Unreal 5 的新特性：`Nanite` (虚拟几何体，运行时自动LOD)，`Lumen
 - 日本公司[`historia.inc`](https://historia.co.jp/)，与隈研吾建筑都市设计事务所（`KKAA`）合作项目`Multiplication`，基于UE4实现虚拟画廊和奇幻建筑。该公司还涉足游戏、汽车、建筑和广播行业。
 - 扎哈·哈迪德建筑事务所（`ZHA`），基于UE4及Twinmotion进行建筑可视化和云端演示。
 - `通用汽车`，基于UE4开发人机界面（HMI）并用于GMC悍马EV。
-- `华为`，河图项目。旨在重现敦煌当年面貌，属于数字孪生体概念。
+- `华为`，河图项目。切入点是重现敦煌当年面貌，主打AR地图。
 - [`风语筑`](https://fengyuzhu.com/?aboutus/)，设计政务服务、城市文化体验、文旅、广电MCN、新零售体验和数字艺术消费。
 - `阿里`旗下的[躺平设计家](https://www.shejijia.com/)，主要是室内装修效果图。
 - [`光辉城市`](https://www.sheencity.com/mars)，智慧城市数字孪生技术提供商，覆盖建筑设计从创作到交付全流程。
