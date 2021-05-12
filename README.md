@@ -33,6 +33,7 @@
 > - [深入Mono的C\#垃圾回收](GameLogic/Unity/Asset/DiveIntoMonoCsharpGC.md)
 > - [UGUI渲染机制](GameLogic/Unity/UGUI/UGUIRenderSystem.md)
 > - [一个好用的 overdraw 分析工具](GameLogic/Unity/PerformanceOptimizition/CreateUsefulOverdrawIndicator.md)
+> - [六个必备设计模式](GameLogic/Pattern/CommonPatternsCollection.md)
 > - [关于游戏引擎开发这件事](GameEngine/AboutGameEngine.md)
 ---
 
