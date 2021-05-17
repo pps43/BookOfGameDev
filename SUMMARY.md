@@ -4,14 +4,14 @@
 
 ## 游戏逻辑开发和优化
 * 模式与架构
-  * [🟢六个必备设计模式](GameLogic/Pattern/CommonPatternsCollection.md)
+  * [居家旅行必备的六大设计模式](GameLogic/Pattern/CommonPatternsCollection.md)
   * 🟡组合还是继承，这是个问题
   * [MVP 架构模式](GameLogic/Pattern/MVP.md)
   * [ECS 架构模式](GameLogic/Pattern/ECS.md)
   * [网络游戏架构](GameLogic/Network/README.md)
     * [🔴帧同步](GameLogic/Network/FrameLockStepSync.md)
 
-* 使用Unity开发游戏
+* 基于Unity开发游戏
   * [导言](GameLogic/Unity/README.md)
   * UGUI
     * [UGUI渲染机制](GameLogic/Unity/UGUI/UGUIRenderSystem.md)
@@ -55,15 +55,20 @@
 
 
 ## 游戏引擎开发
-* [关于游戏引擎开发这件事](GameEngine/AboutGameEngine.md)
-* 基础系统
-* 渲染引擎
-* 动画引擎
-* 物理引擎
-* 游戏AI
-* 工具链
+* [关于入门游戏引擎开发这件事](GameEngine/AboutGameEngine.md)
+* 学习路线与资料
+* 基于Unreal学习游戏引擎
+  * 如何学习 UE4 源码
+  * UE4 的构建系统 UBT
+  * UE4 的基础工具 UHT
+  * UE4 的 UObject 漫谈，意义和代价
+  * UE4 的类型系统
+  * UE4 的反射机制
+  * UE4 的垃圾回收机制
+  * UE4 的蓝图虚拟机
+  * C++和蓝图的互操作，以及带来的复杂性
 
-## 游戏编程语言 | IDE | Devops
+## 语言 | IDE | Devops
 
 * C# 及 dotNET
   * [🟢dotNET 垃圾回收机制](DotNet/dotNetGC.md)

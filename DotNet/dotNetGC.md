@@ -4,7 +4,7 @@
 - [Official Doc](https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/)
 - [Maoni S. Personal Doc](https://github.com/Maoni0/mem-doc/blob/master/doc/.NETMemoryPerformanceAnalysis.md)
 
-第二个资料虽然是personal doc，但因为Maoni是dotNet开发组的一位Partner级别的大神，所以十分有价值。
+第二个资料虽然是personal doc，但因为Maoni是dotNet开发组专攻GC的一位TechLead（Partner级别），所以十分有价值。
 而本文正文主要总结自Maoni在微软内部的一次分享会（在微软工作的好处是可以从大神们那里聆听到第一手经验）。
 
 ---
@@ -68,3 +68,7 @@ But how to correlate with your data size?
 
 ## 几点总结
 🟡TODO
+
+## 更多资料
+- dotNet GC 源码：https://github.com/dotnet/runtime/tree/main/src/coreclr/gc
+- 《Pro .Net Memory Management》 by Konrad Kokosa： http://prodotnetmemory.com/，其自制的两幅 .Net Memory Poster 也很有价值 [PDF1](http://prodotnetmemory.com/data/netmemoryposter.pdf), [PDF2](http://prodotnetmemory.com/data/netmemoryposter_threads.pdf)
