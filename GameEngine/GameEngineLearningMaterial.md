@@ -18,20 +18,20 @@
 
 #### 经典书籍
 - 《游戏引擎架构》，`Milo Yip` 译。后来该书又出了第二版和第三版，只有英文原著，新增内容如下。
-  > - computer and CPU hardware and memory caches,
-  >	- compiler optimizations,
-  >	- C++ language standardization,
-  >	- the IEEE-754 floating-point representation,
-  > - 2D user interfaces,
+  > - computer and CPU hardware and memory caches.
+  > - compiler optimizations.
+  > - C++ language standardization.
+  > - the IEEE-754 floating-point representation.
+  > - 2D user interfaces.
   > - an entirely new chapter on hardware parallelism and concurrent programming.
-  > - Information on new topics, including the latest variant of the C++ programming language, C++11, and the architecture of the eighth generation of gaming consoles, the Xbox One and PlayStation 4
-  > - New chapter on audio technology covering the fundamentals of the physics, mathematics, and technology that go into creating an AAA game audio engine
-  > - Updated sections on multicore programming, pipelined CPU architecture and optimization, localization, pseudovectors and Grassman algebra, dual quaternions, SIMD vector math, memory alignment, and anti-aliasing
-  > - Insight into the making of Naughty Dog’s latest hit, The Last of Us
+  > - Information on new topics, including the latest variant of the C++ programming language, C++11, and the architecture of the eighth generation of gaming consoles, the Xbox One and PlayStation 4.
+  > - New chapter on audio technology covering the fundamentals of the physics, mathematics, and technology that go into creating an AAA game audio engine.
+  > - Updated sections on multicore programming, pipelined CPU architecture and optimization, localization, pseudovectors and Grassman algebra, dual quaternions, SIMD vector math, memory alignment, and anti-aliasing.
+  > - Insight into the making of Naughty Dog’s latest hit, The Last of Us.
 
 - 《Real-Time Rendering 4th》(RTR4)，[官网](http://www.realtimerendering.com/)，知乎上有牛人分享了[读书笔记](https://www.zhihu.com/column/game-programming)
 - 《Physically Based Rendering 4th》(PBRT)，[官网](https://www.pbrt.org/)， 书中[源码](https://github.com/mmp/pbrt-v4)
-- 《GPU Gems》1~3三部曲（2004~2006），[电子书](https://developer.nvidia.com/gpugems/gpugems/foreword)已公开；《GPU Pro》1~7七部曲（2010~2017），《GPU Zen》（2017）
+- 《GPU Gems》1~3三部曲（2004~2006），[电子书](https://developer.nvidia.com/gpugems/gpugems/foreword)已公开；《GPU Pro》1~7七部曲（2010~2017）；《GPU Zen》（2017）。
 
 #### 业界动态
 - GDC
