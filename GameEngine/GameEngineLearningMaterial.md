@@ -42,6 +42,7 @@
 - `Milo Yip` [游戏关键技术整理](http://gamextech.org/)
 - `Morgan McGuire` [Graphic Programming Project](http://graphicscodex.com/projects/projects/)
 - [OpenGL API 查询](http://docs.gl/)
+- `Inigo Quilez`（ShaderToy创始人之一），[图形学文集](https://www.iquilezles.org/www/index.htm)
 
 #### UE4 专题
 - 《大象无形·虚幻引擎程序设计浅析》

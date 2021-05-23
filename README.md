@@ -27,14 +27,14 @@
 
 
 > 下面是推荐阅读的几篇文章：
+> - [居家旅行必备的六大设计模式](GameLogic/Pattern/CommonPatternsCollection.md)
 > - [深入Unity序列化](GameLogic/Unity/Asset/DiveIntoUnitySerialization.md)
 > - [深入Unity资源](GameLogic/Unity/Asset/DiveIntoUnityAsset.md)
 > - [深入剖析Unity协程](GameLogic/Unity/Coroutine/DiveIntoUnityCoroutine.md)
 > - [深入Mono的C\#垃圾回收](GameLogic/Unity/Asset/DiveIntoMonoCsharpGC.md)
 > - [UGUI渲染机制](GameLogic/Unity/UGUI/UGUIRenderSystem.md)
 > - [一个好用的 overdraw 分析工具](GameLogic/Unity/PerformanceOptimizition/CreateUsefulOverdrawIndicator.md)
-> - [六个必备设计模式](GameLogic/Pattern/CommonPatternsCollection.md)
-> - [关于游戏引擎开发这件事](GameEngine/AboutGameEngine.md)
+> - [关于游戏引擎](GameEngine/AboutGameEngine.md)
 ---
 
 由于有些文章写作日期比较早，如有过时和错漏之处，欢迎指出。或者提PR到这个[repo](https://github.com/jonyzhao/BookOfGameDev)
