@@ -1,4 +1,4 @@
-# 关于游戏引擎开发这件事
+# 关于游戏引擎
 
 兜兜转转一年多，决心回到游戏行业。也可以说是在更大的世界里经受历练后，终于“进军”游戏引擎开发。我在这里整理了一些近期的材料，和对游戏引擎未来的设想。
 
@@ -47,7 +47,7 @@ Unreal 5 的新特性：`Nanite` (虚拟几何体，运行时自动LOD)，`Lumen
 高模--(烘焙)--> 法线贴图等贴图 --> 游戏引擎。游戏引擎运行时根据算法进行LOD（普通LOD会导致远处巨大物体细节丧失，快速移动时远处物体突然出现）。现在有了 `Nanite`，高模可以直接导入游戏引擎且不需要LOD算法。而且高模可以直接来自3D扫描器（例如Quixel Bridge）。大大节省了美术制作流程，提高了细节表现。关于光照，此前全局光效果多采用烘焙，只适用于场景中静态的物体（也不能支持昼夜交替），因此要和局部的动态光相互配合；另一种解决方案光线追踪需要专门的硬件支持。`Lumen`则不依赖光追硬件，来实现近似光追达到的全局光效果。
 
 ### 基础技术
-引擎技术的革新往往源于基础技术的革新，例如 `GPU Direct Storage` ([Nvdia RTX IO](https://www.nvidia.com/en-us/geforce/news/rtx-io-gpu-accelerated-storage-technology/)，读取带宽从顶级SSD的7GB/s，提升到14GB/s，同时CPU占用变为原来的1/4)。
+引擎技术的革新往往源于基础技术的革新，例如 `GPU Direct Storage` ([Nvdia RTX IO](https://www.nvidia.com/en-us/geforce/news/rtx-io-gpu-accelerated-storage-technology/)，读取带宽从顶级SSD的7GB/s，提升到14GB/s，同时CPU占用变为原来的1/4)。又如 `GPU RT Core`（[Nvdia Turing GPU Architecture](https://developer.nvidia.com/blog/nvidia-turing-architecture-in-depth/)），通过在SM内集成专用的光线追踪求解模块（专用的ASIC流水线）射线与三角形求交，较 compute shader 有数量级的提升。
 
 作为引擎开发岗，除了关注前沿技术外，修炼基本功更是重要。举几个例子：
 - 数学和物理。数学主要是三角学、线性代数、微积分，可能还需要随机过程、数值分析、偏微分方程；物理主要是力学、光学，电磁学也会有帮助。
