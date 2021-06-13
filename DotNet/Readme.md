@@ -5,10 +5,21 @@
 这里收集了一些不错的学习资料，不仅适用于c#，还能深化对**类型系统设计、内存管理、性能优化**的理解。
 
 ## 书籍
-- 《C# in Depth》，[官网链接](https://csharpindepth.com/)，第四版更新到了c#7和部分c#8的特性，语言方面看此书基本足够。
-- 《CLR via C#》，第四版于2015年出版，虽然基于.Net Framework 4.5，但依旧是当前市面上对CLR介绍最详实的一部必读好书。
-- 《The Book of The Runtime》，[Github链接](https://github.com/dotnet/coreclr/tree/master/Documentation/botr)。这里收集了微软C#和.NET运行时设计团队的若干文章，可以作为阅读《CLR via C#》的补充。
-- 《Pro .NET Memory Management》，[官网链接](https://prodotnetmemory.com/)，从内存管理和性能优化角度，介绍.NET的实现细节和实用技巧，这本书得到了微软C#设计团队的推荐。作者还贴心地公开了两张的海报，一张介绍[.NET内存排布](https://prodotnetmemory.com/data/netmemoryposter.pdf)，一张介绍[.NET GC](https://prodotnetmemory.com/data/netmemoryposter_threads.pdf)
-- 《The Garbage Collection Handbook》，对于GC这个庞大的话题，上面的书籍并未系统性的介绍，而这本书由浅入深地介绍了GC这个庞大的话题，乃经典必读。
+- `《C# in Depth》`，[官网链接](https://csharpindepth.com/)，第四版更新到了c#7和部分c#8的特性，语言方面看此书基本足够。
+- `《CLR via C#》`，第四版于2015年出版，虽然基于.Net Framework 4.5，但依旧是当前市面上对CLR介绍最详实的一部必读好书。
+- `《The Book of The Runtime》`，[Github链接](https://github.com/dotnet/coreclr/tree/master/Documentation/botr)。这里收集了微软C#和.NET运行时设计团队的若干文章，可以作为阅读《CLR via C#》的补充。
+- `《Pro .NET Memory Management》`，[官网链接](https://prodotnetmemory.com/)，从内存管理和性能优化角度，介绍.NET的实现细节和实用技巧，这本书得到了微软C#设计团队的推荐。作者还贴心地公开了两张的海报，一张介绍[.NET内存排布](https://prodotnetmemory.com/data/netmemoryposter.pdf)，一张介绍[.NET GC](https://prodotnetmemory.com/data/netmemoryposter_threads.pdf)
+- `《The Garbage Collection Handbook》`，对于GC这个庞大的话题，上面的书籍并未系统性的介绍，而这本书由浅入深地介绍了GC这个庞大的话题，乃经典必读。
 
 ## 其他
+- Youtube: [Patterns for high-performance C#, 2018](https://www.youtube.com/watch?v=7GTpwgsmHgU)
+
+
+## 工具
+- 语言设计规范一本全：[ECMA335, Partition III](https://www.ecma-international.org/publications-and-standards/standards/ecma-335/)
+- 在线源码：[.Net Framework 4.8](https://referencesource.microsoft.com/)
+- 在线IL等：[SharpLab](https://sharplab.io/)
+- CIL指令集：[Wiki](https://en.wikipedia.org/wiki/List_of_CIL_instructions)，[ECMA335, Partition III](https://www.ecma-international.org/publications-and-standards/standards/ecma-335/)
+- 性能测量：[MemoryDiagnoser](https://adamsitnik.com/the-new-Memory-Diagnoser/), [benchmark .Net](https://benchmarkdotnet.org/index.html)
+- 反编译：[DnSpy](https://github.com/dnSpy/dnSpy/tags)
+- 加壳：[.NET Reactor](https://www.eziriz.com/dotnet_reactor.htm)
