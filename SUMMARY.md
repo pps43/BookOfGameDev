@@ -70,8 +70,9 @@
 
 ## 语言 | IDE | Devops
 
-* C# 及 dotNET
-  * [🟢dotNET 垃圾回收机制](DotNet/dotNetGC.md)
+* C# 和 .NET
+  * [学习资料](DotNet/Readme.md)
+  * [.NET 垃圾回收机制](DotNet/dotNetGC.md)
 * C++
 * Lua
   * [Lua简介](Lua/Lang/LuaNotes.md)
