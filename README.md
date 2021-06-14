@@ -31,6 +31,7 @@
 
 > 下面是推荐阅读的几篇文章：
 > - [居家旅行必备的六大设计模式](GameLogic/Pattern/CommonPatternsCollection.md)
+> - [struct灵魂拷问](DotNet/dotNetStructQuestions.md)
 > - [深入Unity序列化](GameLogic/Unity/Asset/DiveIntoUnitySerialization.md)
 > - [深入Unity资源](GameLogic/Unity/Asset/DiveIntoUnityAsset.md)
 > - [深入剖析Unity协程](GameLogic/Unity/Coroutine/DiveIntoUnityCoroutine.md)

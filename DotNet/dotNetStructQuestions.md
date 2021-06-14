@@ -3,7 +3,7 @@
 以下内容灵感来源于一次技术交流，基于`CLR`运行时。
 
 ### struct也继承自System.Object，与class的区别到底在哪里？
-struct继承自`ValueType`（所有值类型的基类），class属于引用类型，而值类型与引用类型的本质区别在于前者在拷贝时是按值拷贝，后者拷贝的是地址。其他区别还有：struct对象一般在线程栈上（除非嵌入了引用类型中作为字段），class总是在托管堆上由GC管理；struct对象不可能为null，总是初始化为0（不能自定义无参构造器）；struct不支持继承；等。
+struct继承自`ValueType`（所有值类型的基类），class属于引用类型，而值类型与引用类型的本质区别在于前者在拷贝时是按值拷贝，后者拷贝的是地址。其他区别还有：struct对象一般在线程栈上（除非嵌入了引用类型中作为字段），class总是在托管堆上由GC管理；struct对象不可能为`null`，总是初始化为`0`（不能自定义无参构造器）；struct不支持继承；等。
 
 ### struct为什么不能被继承（从语法上和设计上回答）
 从语法上来说，struct继承`ValueType`的时候是隐式密封的，观察相应的IL代码即可发现`sealed`关键字。
@@ -11,13 +11,13 @@ struct继承自`ValueType`（所有值类型的基类），class属于引用类�
 
 
 ### struct 可以实现接口吗
-可以，系统里很多就是这么做的，比如 System.Int32
+可以，系统里很多就是这么做的，比如 `System.Int32`
 实际上CLR中的接口只是对一组方法签名进行了统一命名，这些方法不提供任何实现。
 
 
 ### struct 可以自定义无参构造器吗
 c#中不可以，会报错`CS0568: Struct cannot contain explicit parameterless constructors`。但CLR中其实没有这个限制。
-如下代码中，CLR为了高效，会直接将内存空间置0，并不会自动调用1000次MyStruct的构造函数。如果c#允许定义无参构造器，那么在这里创建出来的`MyStruct`对象大概率是不合格的，会让使用者更加困惑。
+如下代码中，CLR为了高效，会直接将内存空间置0，并不会自动调用1000次`MyStruct`的构造函数。如果c#允许定义无参构造器，那么在这里创建出来的`MyStruct`对象大概率是不合格的，会让使用者更加困惑。
 ```cs
 MyStruct[] foo = new MyStruct[1000];
 ```
@@ -26,6 +26,7 @@ MyStruct[] foo = new MyStruct[1000];
 
 ### struct何时被装箱
 其实就是问值类型何时被装箱。
+
 1. 将值类型对象赋值/转换给一个接口（接口也是引用类型）
 2. 将值类型对象赋值/转换为一个`object`（转换大多发生在函数参数传递）
 3. 调用`Object`中的非虚方法`GetType()`
@@ -85,9 +86,10 @@ m2.ToString(); // no boxing, see ToString() defined in MyStruct2
 ```
 
 虽然上面的IL中看不到`box`，展开进一步的分析。
-m0没有自己的Override，因此会调用父类ValueType的ToString()，为此一定要box的；
-m1在自己的Override中调用了base.ToString()，因此从IL代码中直接可以看到box这条指令；
-m2在自己的Override中直接返回一个string，因此不需要box；
+
+- m0没有Override，因此会调用父类`ValueType`中的方法，为此一定要`box`的；
+- m1在Override中调用了`base.ToString()`，因此从IL代码中直接可以看到`box`这条指令；
+- m2在Override中直接返回一个字符串，因此不需要`box`；
 
 ```cs
 //m1.ToString()的IL代码
@@ -154,6 +156,7 @@ m2在自己的Override中直接返回一个string，因此不需要box；
 
 ### struct作为字典的key产生了装箱后，而且装箱后地址不同，但字典似乎依然正常执行逻辑。它是如何判定key相等的？
 既然讨论的是发生了装箱，也就是该struct并没有override自己的`Equals`，因此装箱后的对象调用的是`ValueType.Equals`。该方法正确处理了box后的对象的相等性判断，避免了使用`Object.Equals`带来的问题。具体来说，其过程是：
+
 - 如果obj为`null`，直接返回`false`；
 - 如果二者的类型不同，直接返回`false`；
 - 尝试进行内存逐bit快速比较；
@@ -211,6 +214,6 @@ public override bool Equals(object obj)
 ---
 灵魂拷问结束。
 
-如果对.NET CLR没有系统性的了解，看到这里可能已经满头大汗。推荐看《CLR via C#》第二部分（尤其第5章），相信阅读后会豁然开朗。
+如果对.NET CLR没有系统性的了解，看到这些问题可能已经满头大汗。推荐看《CLR via C#》第二部分（尤其第5章），相信阅读后会豁然开朗。
 
-同时极力推荐使用`dnSpy`作为IL查看工具，在实践中反思书本上的知识有没有过时，亦或是自己的理解有误。例如在观察是否有装箱时，笔者之前有一个不正确的理解：看不到`box`指令，就没有装箱。因此在分析一个没有实现自己的`ToString()`的struct对象调用`ToString()`时，因为没有观察到`box`，对书本和ECMS335标准上的说法产生了困惑，以为是编译器做了某种神奇优化。正确的理解是：实际会调用到`ValueType.ToString()`，为此struct一定会装箱。
+同时极力推荐使用`dnSpy`作为IL查看工具，在实践中反思书本上的知识有没有过时，亦或是自己的理解有误。例如在观察是否有装箱时，笔者之前有一个不正确的理解：看不到`box`指令，就没有装箱。因此在分析一个没有实现自己的`ToString()`的struct对象调用`ToString()`时，因为没有观察到`box`，对书本和ECMA335标准上的说法产生了困惑，以为是编译器做了某种神奇优化。正确的理解是：实际会调用到`ValueType.ToString()`，为此struct一定会装箱。
