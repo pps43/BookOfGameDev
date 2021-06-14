@@ -72,7 +72,9 @@
 
 * C# 和 .NET
   * [学习资料](DotNet/Readme.md)
-  * [.NET 垃圾回收机制](DotNet/dotNetGC.md)
+  * [struct灵魂拷问](DotNet/dotNetStructQuestions.md)
+  * [.NET装箱拆箱(box/unbox)机制](DotNet/dotNetBoxing.md)
+  * [.NET垃圾回收(GC)机制](DotNet/dotNetGC.md)
 * C++
 * Lua
   * [Lua简介](Lua/Lang/LuaNotes.md)
