@@ -12,7 +12,7 @@
     * [🔴帧同步](GameLogic/Network/FrameLockStepSync.md)
 
 * 基于Unity开发游戏
-  * [导言](GameLogic/Unity/README.md)
+  * [Unity的未来，是固守Mono, 还是拥抱CoreCLR](GameLogic/Unity/MonoOrCLR.md)
   * UGUI
     * [UGUI渲染机制](GameLogic/Unity/UGUI/UGUIRenderSystem.md)
     * [UGUI文本优化](GameLogic/Unity/UGUI/UGUIOptimization_TextFont.md)
@@ -24,7 +24,7 @@
     * [深入Assetbundle机制](GameLogic/Unity/Asset/DiveIntoAssetBundle.md)
     * [深入Mono的C\#资源回收](GameLogic/Unity/Asset/DiveIntoMonoCsharpGC.md)
     * [深入Unity序列化](GameLogic/Unity/Asset/DiveIntoUnitySerialization.md)
-  * 异步编程
+  * 异步
     * [深入剖析Unity协程](GameLogic/Unity/Coroutine/DiveIntoUnityCoroutine.md)
     * [Unity协程实用技巧](GameLogic/Unity/Coroutine/CodeHappilyWithUnityCoroutine.md)
     * [一个简易的异步动作队列](GameLogic/Unity/Coroutine/CreateUsefulActionSequence.md)
@@ -35,7 +35,6 @@
     * [更多有关Xlua](Lua/Xlua/XluaMoreInfo.md)
   * [编辑器扩展](GameLogic/Unity/EditorExtension/README.md)
     * 🔴可视化与反射机制
-    * 🔴用Flutter、SwiftUI的语法写Unity编辑器插件
   * [性能优化](GameLogic/Unity/PerformanceOptimizition/README.md)
     * [到底优化什么](GameLogic/Unity/PerformanceOptimizition/WhatToOptimize.md)
     * [🟡移动设备的硬件架构和瓶颈]
@@ -47,11 +46,9 @@
     * 🔴游戏场景规范：相机、层级、碰撞矩阵
     * 🔴目录命名和组织
     * 🔴Unity中如何进行TDD测试驱动开发
-    * 🔴Git还是Svn
   * 其他  
-    * 🔴人型动画高级功能
+    * 🔴人型动画
     * 🔴碰撞连续性和顺序性
-    * 🔴碰撞矩阵
 
 
 ## 游戏引擎开发
