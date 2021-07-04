@@ -1,61 +1,46 @@
-# 深入Mono的C\#资源回收
+# 谈谈Mono的C\#内存管理
+
+> 本文写于早期，故停止对其内容加以扩充，仅对当年理解不足之处加以修正。
 
 ---
-- 深入Mono的c\#资源回收
-    - [mono是什么](#mono是什么)
-    - [GC为什么耗时](#GC为什么耗时)
-    - [何谓`mono内存泄漏`](#何谓`mono内存泄漏`)
-    - [减少GC的常见套路](#减少GC的常见套路)
-    - [IDisposable与非托管资源](#IDisposable与非托管资源)
----
 
-* [Unity官方的优化GC建议](https://unity3d.com/learn/tutorials/topics/performance-optimization/optimizing-garbage-collection-unity-games)
+本文讨论的C\#对象指的是Unity.Object以外的类型对象，是由Mono VM管理的。
 
+## Mono是什么
 
-C\#资源，在这里指的是Unity.Object以外的类型对象（更具体地分**为托管资源**和**非托管资源**）。在Unity中，是由mono虚拟机通过垃圾回收机制（GC）管理的。
-
-> **托管资源**：由CLR\(Common Language Runtime\)管理分配和释放发资源，即从mono运行时里new出来的对象。  
-> **非托管资源**：不受CLR管理的对象，如：Windows内核对象、文件、数据库连接、套接字和COM对象等。
-
-## mono是什么
-
-我们总在说的“mono”，到底指的是什么？[参考这里](http://www.mono-project.com/docs/about-mono/)。直白点说，mono是.NET的一套免费公开的实现。其特性要落后于.NET。~~而Unity目前使用的mono更是老版的mono（2.6.5版）~~ Unity2017以后默认的mono环境兼容了.NET4.6。简而言之：
-
-> Mono has a C\# compiler, a runtime and a lot of libraries.
-
-
+我们总在说的“Mono”，到底指的是什么？直白点说，Mono是.NET的一套免费公开的实现。其特性要落后于.NET。~~而Unity目前使用的Mono更是老版的Mono（2.6.5版）~~ Unity2017以后默认的Mono环境兼容了.NET4.6。
 
 ## GC为什么耗时
 
-具体是怎样判断哪些需要被回收呢？我们的直观想法是`引用计数`，很快很简单。但这样会有循环引用而不得释放的问题（iOS用的是自动引用计数，为了解决这个问题，需要开发者使用弱引用）。Unity携带的mono，GC采用的是`Boehm GC`，而最新的mono已经采用了`分代 GC`——sgen。Boehm策略是`rootObj`，不是引用计数。概括一下Unity游戏中的GC耗时原因：
+具体是怎样判断哪些需要被回收呢？我们的直观想法是`引用计数`，很快很简单。但这样会有循环引用而不得释放的问题（iOS用的是自动引用计数，为了解决这个问题，需要开发者使用弱引用）。Unity携带的Mono，采用的是`Boehm GC`，一种没有分代的、没有整理的、不精确的GC方案。Boehm策略是`rootObj`，不是引用计数。最新的Mono已经默认采用分代的`SGen GC`。
+
+概括一下GC耗时原因：
 
 * `Boehm GC`以全局数据区和当前寄存器中的对象为根节点进行遍历，这本身就耗时；
-* 启动GC前，会暂停所有些需要mono内存分配的线程，完成GC后才恢复，造成卡顿。
+* 启动GC前，会暂停所有些需要Mono内存分配的线程（也叫做`stop the world`），完成GC后才恢复，因此造成卡顿。
 
 所以，一方面我们要少制造垃圾，另一方面要控制垃圾回收调用的时机。
 
-## 何谓`mono内存泄漏`
+## 何谓Mono内存泄漏
 
-有了GC机制，为什么还有mono内存泄漏？
+有了GC机制，为什么还有Mono内存泄漏？
 
-答：**mono内存泄漏，并不是真的泄漏**，而是mono虚拟机向操作系统（os）申请到的内存不会还给os，即使gc后，那些不用的内存（`unused size`）也是自己保存起来备用。不够的时候会再向os申请。因此，mono占用的内存（`heap size`）是只增不减的。当有些资源实际上已经不用了，却占着空间无法被GC回收，就称为mono内存泄漏。
+答：**Mono内存泄漏，并不是真的泄漏**，而是Mono虚拟机向操作系统（os）申请到的内存不会还给os，即使GC后，那些不用的内存（`unused size`）也是自己保存起来备用。不够的时候会再向OS申请。因此，Mono占用的内存（`heap size`）是只增不减的。当有些资源实际上已经不用了，却占着空间无法被GC回收，就称为Mono内存泄漏。
 
 ```csharp
-//获取mono占用内存的api
+//获取Mono占用内存的api
 [System.Runtime.InteropServices.DllImport("__Internal")]
-public static extern long mono_gc_get_used_size();
+public static extern long Mono_gc_get_used_size();
 
 [System.Runtime.InteropServices.DllImport("__Internal")]
-public static extern long mono_gc_get_heap_size();
+public static extern long Mono_gc_get_heap_size();
 ```
 
-当整个应用被杀死时，mono占用的内存才能还给os。
+当整个应用被杀死时，Mono占用的内存才能还给OS。
 
 一个有趣的小知识：当在PC模拟器上运行Unity游戏时，点击三角形终止游戏运行，所有内存真的会归还给操作系统吗？答：不是的。如果你用了多线程，那么unity是不对其他线程负责的，点击三角形关闭的只是unity对应的线程。若其他线程访问了unityEngine相关的数据，将是无效的。
 
-> The play mode is just another thread inside the same mono VM. --[Dreamora](https://forum.unity3d.com/threads/threading-causes-memory-leak.87652/)
-
-
+> The play mode is just another thread inside the same Mono VM. --[Dreamora](https://forum.unity3d.com/threads/threading-causes-memory-leak.87652/)
 
 ## 减少GC的常见套路
 
@@ -119,26 +104,17 @@ public static void Debug<T1, T2>(T1 arg1, T2 arg2)
 MyDebug.Log("the player uin is: " , uin);//现在可以这么写，无额外GC，无装箱拆箱
 ```
 
-### yield
-
-- `yield break`。中止协程中的后续操作。
-- `yield return null/1/true/false`。挂起协程，回到主函数逻辑，下一帧【执行游戏逻辑时】从挂起的位置继续。
-- `yield return new WaitForSeconds(1.0f)`。挂起协程，1s后【执行游戏逻辑时】从挂起的位置继续。
-- `yield return new WaitForEndOfFrame()`。挂起协程，这一帧的渲染结束【显示到屏幕之前】时从挂起的位置继续。
-- `yield return StartCorotine(subCoroFunc());`。嵌套协程。当【子协程完全执行完毕时 && 执行游戏逻辑时】从挂起的位置继续。嵌套协程的作用不大，只是看上去更有层次。
- 
 
 ### struct替代class
 
-struct是在栈上的，更快，而且不存在GC。什么时候用呢？  
+struct是在栈上分配的，分配速度快，而且不需要GC。 
+
 通常我们创建的引用类型总是多于值类型。如果以下问题的回答都为yes，那么我们就应该创建为值类型：
 
 * 该类型的主要职责是否用于数据存储？
 * 该类型的共有借口是否完全由一些数据成员存取属性定义？
 * 是否确信该类型永远不可能有子类？
 * 是否确信该类型永远不可能具有多态行为？
-
-
 
 ## IDisposable与非托管资源
 

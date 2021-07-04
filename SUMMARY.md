@@ -73,6 +73,7 @@
 * C# 和 .NET
   * [学习资料](DotNet/Readme.md)
   * [struct灵魂拷问](DotNet/dotNetStructQuestions.md)
+  * [CIL的世界：call和callvirt]
   * [.NET装箱拆箱(box/unbox)机制](DotNet/dotNetBoxing.md)
   * [.NET垃圾回收(GC)机制](DotNet/dotNetGC.md)
 * C++
