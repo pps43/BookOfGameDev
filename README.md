@@ -30,12 +30,12 @@
 ---
 
 > 下面是推荐阅读的几篇文章：
-> - [居家旅行必备的六大设计模式](GameLogic/Pattern/CommonPatternsCollection.md)
+> - [居家旅行必备的六大设计模式](GamePlay/Pattern/CommonPatternsCollection.md)
 > - [struct灵魂拷问](DotNet/dotNetStructQuestions.md)
-> - [深入Unity序列化](GameLogic/Unity/Asset/DiveIntoUnitySerialization.md)
-> - [深入Unity资源](GameLogic/Unity/Asset/DiveIntoUnityAsset.md)
-> - [深入剖析Unity协程](GameLogic/Unity/Coroutine/DiveIntoUnityCoroutine.md)
-> - [谈谈Mono的C\#内存管理](GameLogic/Unity/Asset/DiveIntoMonoMemory.md)
-> - [UGUI渲染机制](GameLogic/Unity/UGUI/UGUIRenderSystem.md)
-> - [一个好用的 overdraw 分析工具](GameLogic/Unity/PerformanceOptimizition/CreateUsefulOverdrawIndicator.md)
+> - [深入Unity序列化](GamePlay/Unity/Asset/DiveIntoUnitySerialization.md)
+> - [深入Unity资源](GamePlay/Unity/Asset/DiveIntoUnityAsset.md)
+> - [深入剖析Unity协程](GamePlay/Unity/Coroutine/DiveIntoUnityCoroutine.md)
+> - [谈谈Mono的C\#内存管理](GamePlay/Unity/Asset/DiveIntoMonoMemory.md)
+> - [UGUI渲染机制](GamePlay/Unity/UGUI/UGUIRenderSystem.md)
+> - [一个好用的 overdraw 分析工具](GamePlay/Unity/PerformanceOptimizition/CreateUsefulOverdrawIndicator.md)
 > - [关于游戏引擎](GameEngine/AboutGameEngine.md)

@@ -4,43 +4,43 @@
 
 ## 游戏逻辑开发和优化
 * 模式与架构
-  * [居家旅行必备的六大设计模式](GameLogic/Pattern/CommonPatternsCollection.md)
+  * [居家旅行必备的六大设计模式](GamePlay/Pattern/CommonPatternsCollection.md)
   * 🟡组合还是继承，这是个问题
-  * [MVP 架构模式](GameLogic/Pattern/MVP.md)
-  * [ECS 架构模式](GameLogic/Pattern/ECS.md)
-  * [网络游戏架构](GameLogic/Network/README.md)
-    * [🔴帧同步](GameLogic/Network/FrameLockStepSync.md)
+  * [MVP 架构模式](GamePlay/Pattern/MVP.md)
+  * [ECS 架构模式](GamePlay/Pattern/ECS.md)
+  * [网络游戏架构](GamePlay/Network/README.md)
+    * [🔴帧同步](GamePlay/Network/FrameLockStepSync.md)
 
 * 基于Unity开发游戏
-  * [Unity的未来，是固守Mono, 还是拥抱CoreCLR](GameLogic/Unity/MonoOrCLR.md)
+  * [Unity的未来，是固守Mono, 还是拥抱CoreCLR](GamePlay/Unity/MonoOrCLR.md)
   * UGUI
-    * [UGUI渲染机制](GameLogic/Unity/UGUI/UGUIRenderSystem.md)
-    * [UGUI文本优化](GameLogic/Unity/UGUI/UGUIOptimization_TextFont.md)
-    * [UGUI代码小技巧](GameLogic/Unity/UGUI/UGUITipsOnHowTo.md)
-    * [🟡UI纹理压缩](GameLogic/Unity/UGUI/UGUIOptimization_TextureCompression.md)
+    * [UGUI渲染机制](GamePlay/Unity/UGUI/UGUIRenderSystem.md)
+    * [UGUI文本优化](GamePlay/Unity/UGUI/UGUIOptimization_TextFont.md)
+    * [UGUI代码小技巧](GamePlay/Unity/UGUI/UGUITipsOnHowTo.md)
+    * [🟡UI纹理压缩](GamePlay/Unity/UGUI/UGUIOptimization_TextureCompression.md)
   * 资源管理
-    * [Unity堆内存的分类和管理方式](GameLogic/Unity/Asset/README.md)
-    * [深入Unity资源](GameLogic/Unity/Asset/DiveIntoUnityAsset.md)
-    * [深入Assetbundle机制](GameLogic/Unity/Asset/DiveIntoAssetBundle.md)
-    * [深入Mono的C\#资源回收](GameLogic/Unity/Asset/DiveIntoMonoCsharpGC.md)
-    * [深入Unity序列化](GameLogic/Unity/Asset/DiveIntoUnitySerialization.md)
+    * [Unity堆内存的分类和管理方式](GamePlay/Unity/Asset/README.md)
+    * [深入Unity资源](GamePlay/Unity/Asset/DiveIntoUnityAsset.md)
+    * [深入Assetbundle机制](GamePlay/Unity/Asset/DiveIntoAssetBundle.md)
+    * [深入Mono的C\#资源回收](GamePlay/Unity/Asset/DiveIntoMonoCsharpGC.md)
+    * [深入Unity序列化](GamePlay/Unity/Asset/DiveIntoUnitySerialization.md)
   * 异步
-    * [深入剖析Unity协程](GameLogic/Unity/Coroutine/DiveIntoUnityCoroutine.md)
-    * [Unity协程实用技巧](GameLogic/Unity/Coroutine/CodeHappilyWithUnityCoroutine.md)
-    * [一个简易的异步动作队列](GameLogic/Unity/Coroutine/CreateUsefulActionSequence.md)
+    * [深入剖析Unity协程](GamePlay/Unity/Coroutine/DiveIntoUnityCoroutine.md)
+    * [Unity协程实用技巧](GamePlay/Unity/Coroutine/CodeHappilyWithUnityCoroutine.md)
+    * [一个简易的异步动作队列](GamePlay/Unity/Coroutine/CreateUsefulActionSequence.md)
   * 热更新
     * [Unity 里使用 Xlua](Lua/Xlua/CodeHappierWithXlua.md)
     * [Xlua Examples学习（一）](Lua/Xlua/XluaExampleNotes.md)
     * [Xlua Examples学习（二）](Lua/Xlua/XluaExampleNotes02.md)
     * [更多有关Xlua](Lua/Xlua/XluaMoreInfo.md)
-  * [编辑器扩展](GameLogic/Unity/EditorExtension/README.md)
+  * [编辑器扩展](GamePlay/Unity/EditorExtension/README.md)
     * 🔴可视化与反射机制
-  * [性能优化](GameLogic/Unity/PerformanceOptimizition/README.md)
-    * [到底优化什么](GameLogic/Unity/PerformanceOptimizition/WhatToOptimize.md)
+  * [性能优化](GamePlay/Unity/PerformanceOptimizition/README.md)
+    * [到底优化什么](GamePlay/Unity/PerformanceOptimizition/WhatToOptimize.md)
     * [🟡移动设备的硬件架构和瓶颈]
-    * [Unity Profiler正确解读方法](GameLogic/Unity/PerformanceOptimizition/HowToUseProfilerCorrectly.md)
+    * [Unity Profiler正确解读方法](GamePlay/Unity/PerformanceOptimizition/HowToUseProfilerCorrectly.md)
     * [Unity 性能优化实战经验]
-    * [一个简易的 overdraw 分析工具](GameLogic/Unity/PerformanceOptimizition/CreateUsefulOverdrawIndicator.md)
+    * [一个简易的 overdraw 分析工具](GamePlay/Unity/PerformanceOptimizition/CreateUsefulOverdrawIndicator.md)
   * 项目规范和工作流
     * 🔴美术标准如何确定
     * 🔴游戏场景规范：相机、层级、碰撞矩阵
