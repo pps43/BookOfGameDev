@@ -44,9 +44,9 @@
 - 支持 C#9/10，基于前面的工作，这一步并不难；
 - 支持 .NET 6（跳过 .NET 5）。但有两大难题：
   - 一是所有dll必须重新编译（预计Unity2022.1完成）；
-  - 二是要修改UnityEditor中大量使用AppDomain进行hot reload的部分（AppDomain在新版.NET中被废弃，目前的替代方案是Assembly Load Context，但隔离性并不像AppDomain那么强。Unity正在和微软协商中间方案。）
+  - 二是要修改UnityEditor中大量使用`AppDomain`进行hot reload的部分（AppDomain在新版.NET中被废弃，目前的替代方案是[`AssemblyLoadContext`](https://docs.microsoft.com/en-us/dotnet/core/dependency-loading/understanding-assemblyloadcontext)，但隔离性并不像AppDomain那么强。Unity正在和微软协商中间方案。）
 
-    > The issue with Assembly Load Context is that is doesn't provide all the functionality of appdomain reloads. In general Assembly Load Context is cooperative, and any remaining references (static fields, GC Handles, running threads, etc) will prevent the code from being unloaded. We are investigating how to augment the current behavior.
+    > The issue with `AssemblyLoadContext` is that is doesn't provide all the functionality of appdomain reloads. In general Assembly Load Context is cooperative, and any remaining references (static fields, GC Handles, running threads, etc) will prevent the code from being unloaded. We are investigating how to augment the current behavior.
 
 - **可能**用CoreCLR替代Mono（GC也相应升级为CoreCLR GC），在此之前，GC并不会升级为Mono的SGen。这项工作会持续比较久，目前还没有ETA。Unity大部分代码是C++，C#只有薄薄的一层（但是越来越多的代码在切换到 C#）。在切换到CoreCLR后，其访问Managed Object的方式需要彻底改变，因此改动会很大。参考[Write a custom .NET Core runtime host - .NET | Microsoft Docs](https://docs.microsoft.com/en-us/dotnet/core/tutorials/netcore-hosting)。总体顺序是：先将Player替换为CoreCLR，然后将Editor也替换掉。
 - **不太可能**用微软最新发布的`NativeAOT`替代`IL2CPP`，但会和微软合作、学习和交流。[出处](https://forum.unity.com/threads/unity-future-net-development-status.1092205/page-9#post-7632391)
