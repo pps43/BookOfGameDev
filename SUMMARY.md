@@ -4,14 +4,15 @@
 
 ## 游戏逻辑开发
 * 模式与架构
-  * [居家旅行必备的六大设计模式](GamePlay/Pattern/CommonPatternsCollection.md)
+  * [必备设计模式](GamePlay/Pattern/CommonPatternsCollection.md)
   * [MVP 架构模式](GamePlay/Pattern/MVP.md)
   * [ECS 架构模式](GamePlay/Pattern/ECS.md)
   * [网络游戏架构](GamePlay/Network/README.md)
     * [🔴帧同步](GamePlay/Network/FrameLockStepSync.md)
 
 * 基于Unity开发游戏
-  * [Unity的未来，是固守Mono, 还是拥抱CoreCLR](GamePlay/Unity/MonoOrCLR.md)
+  * Runtime
+    * [Unity的未来，是固守Mono, 还是拥抱CoreCLR](GamePlay/Unity/MonoOrCLR.md)
   * UGUI
     * [UGUI渲染机制](GamePlay/Unity/UGUI/UGUIRenderSystem.md)
     * [UGUI文本优化](GamePlay/Unity/UGUI/UGUIOptimization_TextFont.md)
@@ -33,7 +34,6 @@
   * [编辑器扩展](GamePlay/Unity/EditorExtension/README.md)
   * [性能优化](GamePlay/Unity/PerformanceOptimizition/README.md)
     * [到底优化什么](GamePlay/Unity/PerformanceOptimizition/WhatToOptimize.md)
-    * [🟡移动设备的硬件架构和瓶颈]
     * [Unity Profiler正确解读方法](GamePlay/Unity/PerformanceOptimizition/HowToUseProfilerCorrectly.md)
     * [一个简易的 overdraw 分析工具](GamePlay/Unity/PerformanceOptimizition/CreateUsefulOverdrawIndicator.md)
 
@@ -50,7 +50,4 @@
   * 🔴[CIL的世界：call和callvirt]
   * [.NET装箱拆箱(box/unbox)机制](DotNet/dotNetBoxing.md)
   * [.NET垃圾回收(GC)机制](DotNet/dotNetGC.md)
-* 🟡C++
 * [Lua](Lua/LuaNotes.md)
-* Tools
-  * 🟡Visual Studio高级调试技巧

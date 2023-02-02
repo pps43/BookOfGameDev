@@ -1,7 +1,3 @@
-# 缘之所起
-
----
-
 游戏开发是一个能串联起很多有趣经历的一个领域。是`艺术`、`科学`、`工程`的完美结合。这里主要记载一些游戏开发之路上的见闻、知识、实践和感悟，希望对更多的人有所帮助。
 
 要写成一本书，一本读书笔记，还是一本文集？
@@ -17,13 +13,13 @@
 ---
 
 下面是部分推荐文章（从新到旧）：
-- [Unity的未来，固守Mono，还是拥抱CoreCLR](GamePlay/Unity/MonoOrCLR.md)
+- [Unity的未来，固守Mono，还是拥抱CoreCLR](GamePlay/Unity/Runtime/MonoOrCLR.md)
 - [关于游戏引擎](GameEngine/AboutGameEngine.md)
 - [struct灵魂拷问](DotNet/dotNetStructQuestions.md)
 - [一个好用的 overdraw 分析工具](GamePlay/Unity/PerformanceOptimizition/CreateUsefulOverdrawIndicator.md)
-[谈谈Mono的C\#内存管理](GamePlay/Unity/Asset/DiveIntoMonoMemory.md)
+- [谈谈Mono的C\#内存管理](GamePlay/Unity/Asset/DiveIntoMonoMemory.md)
 - [深入剖析Unity协程](GamePlay/Unity/Coroutine/DiveIntoUnityCoroutine.md)
 - [深入Unity资源](GamePlay/Unity/Asset/DiveIntoUnityAsset.md)
 - [深入Unity序列化](GamePlay/Unity/Asset/DiveIntoUnitySerialization.md)
 - [UGUI渲染机制](GamePlay/Unity/UGUI/UGUIRenderSystem.md)
-- [居家旅行必备的六大设计模式](GamePlay/Pattern/CommonPatternsCollection.md)
+- [必备设计模式](GamePlay/Pattern/CommonPatternsCollection.md)
