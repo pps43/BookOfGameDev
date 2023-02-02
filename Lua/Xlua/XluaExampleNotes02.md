@@ -78,18 +78,6 @@ testobj.TestDelegate = testobj.TestDelegate - lua_delegate --remove
 ```
 
 
-#### 【C#知识补充】delegate vs event
-> 看了上面的例子，估计会对c#的event和delegate有点迷糊，为什么需要event这个东西？
-
-一言以蔽之：event是对delegeate的又一层封装，好处是：http://csharpindepth.com/Articles/Chapter2/Events.aspx (what's the point部分); http://stackoverflow.com/questions/29155/what-are-the-differences-between-delegates-and-events; http://stackoverflow.com/questions/4482613/creating-delegates-manually-vs-using-action-func-delegates
-
-另外，event还有以下特点：
-1、一个delegate原型可以对应多种event
-2、通过event对象来触发消息只能在该对象所在的类中，不可在外面调用。
-3、只能对event对象增加或减少某个监听，不可直接赋值（防止覆盖掉别人的监听）。
-
-
-
 ### 在c#中将table映射到c#的接口
 接口比类更灵活，里面可以有方法，也可以有get/set。从文档中得知那么lua中的table可以映射到多种c#类型，使用上有什么限制？参考Examples里面的CSCallLua.cs。
 

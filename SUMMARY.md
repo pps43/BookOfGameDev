@@ -1,8 +1,8 @@
 # Summary
 
-* [自序](README.md)
+* [你好](README.md)
 
-## 游戏逻辑开发和优化
+## 游戏逻辑开发
 * 模式与架构
   * [居家旅行必备的六大设计模式](GamePlay/Pattern/CommonPatternsCollection.md)
   * [MVP 架构模式](GamePlay/Pattern/MVP.md)
@@ -30,9 +30,7 @@
     * [Unity 里使用 Xlua](Lua/Xlua/CodeHappierWithXlua.md)
     * [Xlua Examples学习（一）](Lua/Xlua/XluaExampleNotes.md)
     * [Xlua Examples学习（二）](Lua/Xlua/XluaExampleNotes02.md)
-    * [更多有关Xlua](Lua/Xlua/XluaMoreInfo.md)
   * [编辑器扩展](GamePlay/Unity/EditorExtension/README.md)
-    * 🔴可视化与反射机制
   * [性能优化](GamePlay/Unity/PerformanceOptimizition/README.md)
     * [到底优化什么](GamePlay/Unity/PerformanceOptimizition/WhatToOptimize.md)
     * [🟡移动设备的硬件架构和瓶颈]
@@ -43,13 +41,8 @@
 ## 游戏引擎开发
 * [关于游戏引擎](GameEngine/AboutGameEngine.md)
 * [学习资料](GameEngine/GameEngineLearningMaterial.md)
-* 🔴基于Unreal学习引擎
-  * 学引擎，到底学什么
-  * UE4 的构建系统 UBT
-  * UE4 的基础工具 UHT
-  * UE4 的类型系统
 
-## 语言和工具
+## 编程
 
 * C# 和 .NET
   * [学习资料](DotNet/Readme.md)
@@ -58,7 +51,6 @@
   * [.NET装箱拆箱(box/unbox)机制](DotNet/dotNetBoxing.md)
   * [.NET垃圾回收(GC)机制](DotNet/dotNetGC.md)
 * 🟡C++
-* Script
-  * [Lua简介](Lua/Lang/LuaNotes.md)
+* [Lua](Lua/LuaNotes.md)
 * Tools
   * 🟡Visual Studio高级调试技巧

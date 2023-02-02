@@ -23,5 +23,4 @@
 新建工程后，右键`Add item`添加一个`hello.lua`，这就可以了。
 - （3）在Unity中的Xlua菜单下选择`ExportluaSyntax`，重启VS，试着在hello.lua中打出`xlua.`，应当有完善的提示了。
 
-### 调试和错误定位（TODO）
 
