@@ -1,6 +1,6 @@
-# 垃圾回收，以dotNet为例
+# 深入.Net GC
 
-现在谈到GC（Garbage Collector），业内标杆似乎得算JVM的[ZGC](https://wiki.openjdk.java.net/display/zgc/Main)。而dotNet世界里的GC（由CLR提供）则没有那么出名。这里给出两个关于CLR GC的资料：
+现在谈到GC（Garbage Collector），似乎不得不提JVM的[ZGC](https://wiki.openjdk.java.net/display/zgc/Main)。而dotNet世界里的GC（由CLR提供）则没有那么出名。这里给出两个关于CLR GC的资料：
 - [Official Doc](https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/)
 - [Maoni S. Personal Doc](https://github.com/Maoni0/mem-doc/blob/master/doc/.NETMemoryPerformanceAnalysis.md)
 
@@ -9,7 +9,7 @@
 
 ---
 
-## 前言（扫盲）
+## 常识
 
 GC负责分配和回收内存。
 
@@ -33,7 +33,7 @@ GC负责分配和回收内存。
 
 🟡TODO：补充managed memory leak，及一两个错误和避免措施
 
-## 正文（Maoni S.）
+## Maoni S. 的内部分享
 ### memory situation
 - heap size: memory usage
 - % time in GC: trade off between heap size and throughput. <=5% is ususally good enough.
@@ -62,12 +62,13 @@ But how to correlate with your data size?
 
 > even if you use c++, you cannot control memory directly as long as using some memory manager. It's a mid-layer between your code as OS.
 
-### .net GC intro
-🟡TODO：整理OneNote上的笔记。
+### 通过IL看某段代码是否会造成GC
 
+创建引用类型对象、对值类型装箱，都会产生GC，有时候从C#代码上看得并不明显。除了理论分析、Profiler分析，还有个方法应当多用：分析IL代码。（[在线IL翻译工具SharpLab.io](https://sharplab.io/)）
 
-## 几点总结
-🟡TODO
+> 某位同学说，函数使用不定参数，在调用的时候如果没有参数一定要传 `null`，否则会创建空对象，频繁调用会造成不必要的GC。真的是这样吗？利用上述工具，发现并不会。因为IL代码中实际上会用一个全局共享的Array.Empty对象当做参数传递的。经常分析IL的好处不仅于此，这里不再展开。
+> ![](../resources/dotNetGC/IL_result.png)
+
 
 ## 更多资料
 - dotNet GC 源码：https://github.com/dotnet/runtime/tree/main/src/coreclr/gc

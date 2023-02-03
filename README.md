@@ -8,7 +8,7 @@
 
 读书笔记的门槛最低，缺点也有二。一是容易演变成抄书式总结，二是读书笔记一般按信息源分篇，而不是按专题进行整合，不便横向比对。另外，原始笔记对作者自身也许是一种积累，对旁人来说，阅读原著可能更有价值。
 
-文集介于二者之间，能更切实地完成“传播有价值的分享、输出知识的总结、提炼实践和经验”的初衷。这本电子书尽个人努力持续迭代，不过有些文章写作日期比较早且后续没有持续关注该话题，如有过时和错漏之处，欢迎提PR到这个[repo](https://github.com/jonyzhao/BookOfGameDev)。另外我发现自己使用英文进行技术写作会更准确更快速，请允许我同时使用两种主要语言。
+文集介于二者之间，能更切实地完成“传播有价值的分享、输出知识的总结、提炼实践和经验”的初衷。相应的[eBook](https://book.enginew.cn/)将尽个人努力持续迭代，不过有些文章写作日期比较早且后续没有持续关注该话题，如有过时和错漏之处，欢迎提PR到这个[repo](https://github.com/jonyzhao/BookOfGameDev)。另外我发现自己使用英文进行技术写作会更准确更快速，请允许我同时使用两种主要语言。
 
 丙申年春月
 
@@ -18,6 +18,7 @@
 - [Unity拥抱CoreCLR](GamePlay/Unity/Runtime/MonoOrCLR.md)
 - [关于游戏引擎的认知](GameEngine/AboutGameEngine.md)
 - [C# struct灵魂拷问](DotNet/dotNetStructQuestions.md)
+- [深入.NET垃圾回收(GC)机制](DotNet/dotNetGC.md)
 - [介绍一个Overdraw分析工具](GamePlay/Unity/PerformanceOptimizition/CreateUsefulOverdrawIndicator.md)
 - [深入Unity协程](GamePlay/Unity/Coroutine/DiveIntoUnityCoroutine.md)
 - [深入Unity资源](GamePlay/Unity/Asset/DiveIntoUnityAsset.md)
