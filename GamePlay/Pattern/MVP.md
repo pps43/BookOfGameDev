@@ -9,7 +9,7 @@
 
 首先一图以蔽之。
 
-![](/assets/MVC-MVP-MVVM.png)
+![](/resources/MVC-MVP-MVVM.png)
 
 ## 1. 事件监听和调用接口的区别。
 
@@ -35,4 +35,4 @@ MVVM，V为了分担一部分压力，与中间的View Model达成了一个“�
 
 MVP将Model和View彻底解耦和了，而且容易理解，可能我还没悟到MVVM的双向绑定的妙处吧，但业内的共识是：双向绑定使得bug更难定位了。在写游戏UI的过程中，觉得MVP用起来比较自然，而且在这种思路下，可以进一步扩展，例如下图。图中Model之间也可能有事件监听的需要。
 
-![MVP-system](/assets/MVP-system.png)
+![MVP-system](/resources/MVP-system.png)

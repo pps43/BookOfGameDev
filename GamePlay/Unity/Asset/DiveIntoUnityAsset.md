@@ -1,4 +1,4 @@
-# 深入Unity资源（Asset）
+# 深入Unity Asset
 
 Unity资源统称为`Asset`。本节讨论四个话题：Asset 和 Unity.Object  
 的概念和内涵；File Guid, local ID 和 Instance ID的由来；MonoBehavior, ScriptableObject 和普通 c\# 类的区别和应用场景；Unity.Object的资源生命周期（主要是加载和卸载）。
@@ -49,7 +49,7 @@ Unity资源统称为`Asset`。本节讨论四个话题：Asset 和 Unity.Object
 
 > Edit-&gt;Project Settings-&gt;Editor -&gt;Assets Serialization，选择 force text
 
-![](/assets/assetSerialization.png)
+![](/resources/assetSerialization.png)
 
 我们已经知道，每个文件有全局唯一的File Guid。一个文件中有多个Object，每个Object有文件中唯一的local Id。所以，每个Object的全局唯一标识为`File Guid + local Id`。Unity编辑器会自动将文件路径和 FileGuid的映射关系保存在一张表里。
 

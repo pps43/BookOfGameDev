@@ -125,7 +125,7 @@ public class DataSource : IEnumerable
 
 首先我们知道，`yield`只是语法糖，那么能不能看到编译器将其展开后的结果呢？笔者将测试代码编译成DLL后，放在**ILSpy 2.4.0**版中看反编译后的c#，终于发现了使用`IEnumerator`和`IEnumerable`的不同。
 
-![IEnumerator和IEnumerable的yield展开结果](/assets/yield_IEnumerator_decompile.png)
+![IEnumerator和IEnumerable的yield展开结果](/resources/yield_IEnumerator_decompile.png)
 
 从上图可以发现，`IEnumerable`会创建一个线程ID，并且初始状态为 -2（表明 `GetEnumerator()`还没有被调用）。如果另一个线程在迭代中途调用了`GetEnumerator()`,则会新建立一个该类对象。这里介绍的是比较简单的情况，当有参数传递时，要去维护线程安全就比较复杂了。总之，**用 IEnumerable 是线程安全的**。
 
@@ -151,11 +151,11 @@ Unity利用这个特性实现了协程。协程本篇就不介绍了，这方面
 
 - yield return null 的结果：
   
-![yield_null](/assets/yield_null.png)
+![yield_null](/resources/yield_null.png)
 
 - yield return new WaitForSeconds(1f) 的结果
 
-![yield_ws](/assets/yield_waitSecond.png)
+![yield_ws](/resources/yield_waitSecond.png)
 
 看完后觉得信息量不大。Unity到底用了什么魔法？网上[有篇博客](http://twistedoakstudios.com/blog/Post83_coroutines-more-than-you-want-to-know)给出了自己的猜想（看完源码后发现这位仁兄猜的真准……）
 
@@ -224,3 +224,4 @@ public class SitDownCoroutine : CustomYieldInstruction
 篇幅有限，更多关于Unity协程的实用技巧将收录进下篇。如果本篇没有令读者满足的话，请恕笔者厨艺有限，招待不周。
 
 おそまつ~
+

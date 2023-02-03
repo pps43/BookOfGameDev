@@ -16,7 +16,7 @@ UGUI的渲染器是 **Canvas Renderer**（下文简称为CR），首先来看看
 
 >  之所以使用CR渲染一张图最少有2个三角形，是因为仅在`ImageType`设置为simple时成立。设置为sliced（九宫格），将会有18个三角形，设置为tiled可能更多。
 
-![非连通sprite mesh](/assets/spriterenderMesh.png)
+![非连通sprite mesh](/resources/spriterenderMesh.png)
 
 > 对于sprite renderer，若非透明的部分不连通，则为每个非连通部分各自生成网格。在Unity编辑器中观察三角形网格可以在scene中选择`Shaded Wireframe`。
 
@@ -54,7 +54,7 @@ SR用更复杂的顶点运算为代价，剔除了大量透明区域，减少了
 
 ## 相机层级
 
-![](/assets/unityCamera0.png)
+![](/resources/unityCamera0.png)
 
 上图的红框中，`CullingMask`可以决定该相机能看到什么`Layer`的物体（`Layer`在Inspector窗口的右上角设置，可以自定义）。
 
@@ -62,7 +62,7 @@ SR用更复杂的顶点运算为代价，剔除了大量透明区域，减少了
 
 至于`ViewPort Rect`，可以实现同一个屏幕内显示多个相机视野的功能，通过设置起始点和宽高，可以实现类似监控台多个监视器的效果。下面贴一张图做例子。
 
-![](/assets/unityCamera1.png)
+![](/resources/unityCamera1.png)
 
 ## 画布层级
 
@@ -152,12 +152,12 @@ drawcall太高，意味着有频繁地改变渲染状态，这是很慢的操作
 ## （二）降低overdraw的技巧
 首先观察当前场景的overdraw：unity编辑器中scene视图中选择`OverDraw`（默认是`shaderd`），越亮的区域，overdraw越高。
 
-![](/assets/overdraw.png)
+![](/resources/overdraw.png)
 
 对于降低overdraw，有这么几种办法：
 （1）全屏遮挡的情况，则为被遮挡的canvas添加`CanvasGroup`组件，然后在被挡住时将其alpha值设为0，就不会传给GPU渲染了。Canvas Group还有一些其他设置，意味着该节点以及所有的子节点都可以统一地更改一些行为。
 
-![](/assets/canvasGroup.PNG)
+![](/resources/canvasGroup.PNG)
 
 `Blocks Raycasts`是一个很有用的设置，取消勾选，则意味着该canvas里面的UI都不会接收点击等事件了。
 

@@ -15,7 +15,7 @@
 - （1）`ExportLuaSyntax.cs`中报错的部分，直接注释掉即可。但从中可以发现可以自定义一些需要导出给BabeLua用来给出语法提示的类名。
 - （2）关于新建Lua工程的说明。
 由于unity识别不了lua，所以不会自动将其添加到我们的c#工程中，需要在同一个解决方案里自己手动新建一个lua工程，来管理我们的lua代码。创建新lua工程填写参数如下图所示
-![](/assets/babelua_new_proj.JPG)
+![](/resources/babelua_new_proj.JPG)
 - `Lua scripts folder`的含义就是你存放自己的lua逻辑代码的地方。
 - `Working path`一般和上面填的一致
 - `Lua project name`是lua工程显示在VS里的名字而已。

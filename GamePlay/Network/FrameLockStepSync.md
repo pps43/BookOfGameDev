@@ -3,7 +3,7 @@
 ## 一、概念澄清
 讨论帧同步时，往往不同的人对于一些细节有不同的见解而争执不下，这往往是因为“帧同步”这个名词有歧义，而且并不能概括这套方案的特征。知乎有个帖子对此进行了细致的讨论（[这里](https://zhuanlan.zhihu.com/p/32843758)），结论如图：
 
-![](/assets/frameSyncConcept.jpg)
+![](/resources/frameSyncConcept.jpg)
 
 本文所说的帧同步，其实是上图中“frame lockstep sync”，状态同步是“status sync”。
 

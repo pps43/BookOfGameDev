@@ -7,7 +7,7 @@
 
 如果没有这个工具，你将一遍又一遍的重复回答这个问题：下面哪一张`Overdraw`能够在三档机上以`60FPS`运行，还需要优化多少？
 
-![](/assets/overdraw_question.png)
+![](/resources/overdraw_question.png)
 
 首先揣测一下`Overdraw`为什么被忽视。
 1、PC时代这个问题通常不是瓶颈。人有惯性思维，低估了PC和手机硬件结构差异；
@@ -16,7 +16,8 @@
 再说下为什么致命。概括来说，手机显存采用共享内存方式，造成显卡填充率受限。而`Overdraw`和填充率成正比。
 
 首先分享一张现代移动设备的硬件架构图。老手做性能优化的时候，一方面要看各种Profiler，另一方面要结合硬件能力进行思考，不能只依赖现成工具。
-![](/assets/mobile_hardware_structure.png)
+
+![](/resources/mobile_hardware_structure.png)
 
 可以看到，和PC有显著不同的是，移动设备没有独立显存，只能和其他系统共享带宽。即每次访问 `framebuffer` 时，都要从拥挤的公共带宽上从内存中取数据。透明图的渲染又是一层一层进行的，因此要一遍一遍的读写 `framebuffer`，这不就砸蛋了吗。下面是稍微严谨的分析。
 
@@ -39,7 +40,7 @@ Unity 最新的[官方文档](https://docs.unity3d.com/Manual/MobileOptimisation
 
 下面就来介绍如何实现一个定量分析`Overdraw`的工具。
 
-更多关于填充率的细节和一些优化技巧见这一节: [UGUI渲染机制](Unity/UGUI/UGUIRenderSystem.md)
+更多关于填充率的细节和一些优化技巧见这一节: [UGUI渲染机制](../UGUI/UGUIRenderSystem.md)
 
 ## 编写 overdraw 分析工具
 
@@ -61,7 +62,8 @@ Unity 最新的[官方文档](https://docs.unity3d.com/Manual/MobileOptimisation
 ### 细节
 
 下图是涉及到的主要组件。
-![](/assets/overdrawIndicator.png)
+
+![](/resources/overdrawIndicator.png)
 
 具体步骤：
 - 获取宽高等参数，创建采样相机。
@@ -74,10 +76,12 @@ Unity 最新的[官方文档](https://docs.unity3d.com/Manual/MobileOptimisation
 - 传回结果到c#控制逻辑。
 
 自定义shader只干了一件事：在片元着色阶段，用线性叠加方式，把1024阶采样映射到0~1的区间。
-![](/assets/overdraw_shader_1.jpg)
+
+![](/resources/overdraw_shader_1.jpg)
 
 compute shader 里面：一个线程统计一个像素上的次数，32x32的线程组为一个group，有 width/32 * height/32 个group。
-![](/assets/overdraw_computeshader.png)
+
+![](/resources/overdraw_computeshader.png)
 
 Unity C# 如何与 compute shader交互
 > ComputeBuffer, ComputeShader 类
@@ -99,4 +103,4 @@ Unity C# 如何与 compute shader交互
 
 本篇就写到这里。compute shader 还可以做很多有意思的事，比如在游戏中用来生成复杂地形，生成漂亮的光照效果。下图是Youtube博主的[实验](https://www.youtube.com/watch?v=9RHGLZLUuwc&list=PL5xuzjWiM7bZsJOPGeQObS2MeYY-MP5Tc&index=15&t=0s)。
 
-![](/assets/computeshader_application.png)
+![](/resources/computeshader_application.png)

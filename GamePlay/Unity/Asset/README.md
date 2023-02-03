@@ -26,7 +26,7 @@
 **注**：  
 上文中的`Unity Wrappers objects`就是unity暴露给c\#的一些类，大都继承自Object类，比如GameObject、AudioClip、Transform等。可以这样理解：Unity.Object数据是比较庞大的，像一座冰山，大部分保存在native堆中，而露出到c\#的部分可以通过轻量级的wrapper对象来访问。如下图：
 
-![](/assets/native_mono.png)
+![](/resources/native_mono.png)
 
 代码示例：
 
