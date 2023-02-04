@@ -64,9 +64,10 @@ But how to correlate with your data size?
 
 ### 通过IL看某段代码是否会造成GC
 
-创建引用类型对象、对值类型装箱，都会产生GC，有时候从C#代码上看得并不明显。除了理论分析、Profiler分析，还有个方法应当多用：分析IL代码。（[在线IL翻译工具SharpLab.io](https://sharplab.io/)）
+创建引用类型对象、对值类型装箱，都会产生GC，有时候从C#代码上看得并不明显。除了理论分析、Profiler分析，还有个方法应当多用：分析IL代码。（[在线IL翻译工具SharpLab.io](https://sharplab.io/)，桌面端IL查看工具[ILSpy](https://github.com/icsharpcode/ILSpy/releases)，或者异常强大可惜停更的[DnSpy](https://github.com/dnSpy/dnSpy)）
 
 > 某位同学说，函数使用不定参数，在调用的时候如果没有参数一定要传 `null`，否则会创建空对象，频繁调用会造成不必要的GC。真的是这样吗？利用上述工具，发现并不会。因为IL代码中实际上会用一个全局共享的Array.Empty对象当做参数传递的。经常分析IL的好处不仅于此，这里不再展开。
+> 
 > ![](../resources/dotNetGC/IL_result.png)
 
 

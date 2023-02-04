@@ -42,16 +42,3 @@ GameObject wrapperObj = new GameObject();
 
 * API的例子:Destroy\(wrapperObj\), DestroyImmediate\(wrapperObj\)。
 * IDisposable的例子具体见后文关于c\#资源的讨论。
-
----
-
-## 资源分析小工具
-
-* unity内存分类剖析  
-  [https://bitbucket.org/Unity-Technologies/memoryprofiler/overview](https://bitbucket.org/Unity-Technologies/memoryprofiler/overview)
-
-* 查看IL代码工具：ILSpy  
-  [http://www.fishlee.net/soft/ilspy\_chs/](http://www.fishlee.net/soft/ilspy_chs/)
-
-
-

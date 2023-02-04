@@ -24,13 +24,13 @@
 * Unity
   * Runtime
     * [Unity拥抱CoreCLR](GamePlay/Unity/Runtime/MonoOrCLR.md)
+    * [浅析Mono内存管理](GamePlay/Unity/Runtime/DiveIntoMonoMemory.md)
   * UGUI
     * [浅析UGUI渲染机制](GamePlay/Unity/UGUI/UGUIRenderSystem.md)
     * [浅析UGUI文本优化](GamePlay/Unity/UGUI/UGUIOptimization_TextFont.md)
     * [介绍若干UGUI实用技巧](GamePlay/Unity/UGUI/UGUITipsOnHowTo.md)
   * Resource Management
     * [浅析Unity堆内存的分类和管理方式](GamePlay/Unity/Asset/README.md)
-    * [浅析Mono内存管理](GamePlay/Unity/Asset/DiveIntoMonoMemory.md)
     * [深入Unity资源](GamePlay/Unity/Asset/DiveIntoUnityAsset.md)
     * [深入Unity序列化](GamePlay/Unity/Asset/DiveIntoUnitySerialization.md)
     * [深入Assetbundle机制](GamePlay/Unity/Asset/DiveIntoAssetBundle.md)
