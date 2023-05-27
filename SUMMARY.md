@@ -2,8 +2,6 @@
 
 * [你好](README.md)
 
-## Game Design
-
 ## Game Programming
 * Architecture
   * [游戏必备设计模式](GamePlay/Pattern/CommonPatternsCollection.md)
@@ -11,15 +9,19 @@
   * [ECS 架构模式](GamePlay/Pattern/ECS.md)
 
 * [Networking](GamePlay/Network/README.md)
-    * [🔴帧同步](GamePlay/Network/FrameLockStepSync.md)
+    * [帧同步](GamePlay/Network/FrameLockStepSync.md)
+    * 状态同步
+    * [物理同步](GamePlay/Network/NetworkedPhysics/IntroOfNetworkedPhysics.md)
+    * 物理同步之载具
 
 * Game Engine
   * [学习资料](GameEngine/GameEngineLearningMaterial.md)
   * [关于游戏引擎的认知](GameEngine/AboutGameEngine.md)
   * Physics
+    * [使用PhysX作场景查询](GameEngine/Physics/PhysXSceneQuery.md)
   * Rendering
   * Animation
-  * AI
+  * Game AI
 
 * Unity
   * Runtime
@@ -47,12 +49,13 @@
     * [浅析Unity Profiler](GamePlay/Unity/PerformanceOptimizition/HowToUseProfilerCorrectly.md)
     * [介绍一个Overdraw分析工具](GamePlay/Unity/PerformanceOptimizition/CreateUsefulOverdrawIndicator.md)
 
-## General Programming
+## Programming Language
 
 * C# and .NET
   * [学习资料](DotNet/Readme.md)
   * [C# struct灵魂拷问](DotNet/dotNetStructQuestions.md)
-  * 🔴[CIL的世界：call和callvirt](https://github.com/stakx/ecma-335/blob/master/docs/i.12.1.6.2.4-calling-methods.md)
+  * [CIL的世界：call和callvirt](https://github.com/stakx/ecma-335/blob/master/docs/i.12.1.6.2.4-calling-methods.md)
   * [.NET装箱拆箱机制](DotNet/dotNetBoxing.md)
   * [深入.NET垃圾回收(GC)机制](DotNet/dotNetGC.md)
 * [Lua](Lua/LuaNotes.md)
+
