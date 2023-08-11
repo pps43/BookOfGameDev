@@ -103,6 +103,7 @@ Unreal 5 的新特性：`Nanite` (虚拟几何体，运行时自动LOD)，`Lumen
 - `阿里`旗下的[躺平设计家](https://www.shejijia.com/)，主要是室内装修效果图。
 - [`光辉城市`](https://www.sheencity.com/mars)，智慧城市数字孪生技术提供商，覆盖建筑设计从创作到交付全流程。
 - [`51World`](https://www.51aes.com/)，数字孪生技术提供商，基于UE4提供交通、地产、港口、园区等数字化能力，以及自动驾驶仿真软件`51Sim-One`。
+- [`WorldBLD`](https://www.worldbld.com/)，基于UE5的城市级虚拟资产构建。
 
 没有把云游戏放进游戏引擎的范畴是因为云游戏取决于商业模式，与新技术已经没有任何关系（参见我在知乎上的回答：[5G的出现对游戏领域会有多大的影响？](https://www.zhihu.com/question/318951961/answer/650269309)）。
 
