@@ -4,7 +4,7 @@
 每种模式在阐明用途后，均给出参考代码（以Unity引擎为例）。在实践中，需要根据项目需求进行扩展或简化。
 
 ## 单例
-单例可能是被使用最多也是被误用最多的一种模式。由于管理游戏对象时势必需要各类“Manager”，且这些Manager类对象通常生命周期比较长，如果用一个个全局单例来实现，不管在哪里都能访问，似乎十分方便。然而，笔者并不鼓励这种依赖多个全局单例的写法，这样会造成模块调用关系混乱而难以维护。推荐的方法是只有一个单例，并通过依赖注入的方式传递给需要访问它的类。
+单例可能是被使用最多也是被误用最多的一种模式。由于管理游戏对象时势必需要各类“Manager”，且这些Manager类对象通常生命周期比较长，如果用一个个全局单例来实现，不管在哪里都能访问，似乎十分方便。然而，笔者并不鼓励这种依赖多个全局单例的写法，这样会造成生命周期不明确、资源泄漏隐患增大、模块调用关系混乱而难以维护。推荐的方法是通过依赖注入的方式传递给需要访问它的类。
 
 这并不是否认单例写法的使用面，甚至在早期的小规模预研中，全局单例的写法有助于尽快搭建框架进行玩法验证。用Unity引擎进行原型开发时，由于只有主线程能访问`GameObject`这类Native资源，所以`写法三`通常已经足够。
 
@@ -90,7 +90,7 @@ public class GameManager : USingleton<GameManager>
 ## 抽象工厂
 
 ## 对象池
-对象池的主要作用是加速对象的分配与回收。游戏中通常会用到大量同类对象（如敌人、子弹），如果每次都调用API去申请内存，不仅更慢，而且更容易产生内存碎片从而降低系统运行效率。而一个简单的对象池就能在一定程度上缓解这个问题。（相比于内存池，对象池整体也更为简单。内存池的讨论[参考这里](https://www.zhihu.com/question/25527491/answer/56571062)）
+对象池的主要作用是加速对象的分配与回收。游戏中通常会用到大量同类对象（如敌人、子弹、网络协议包），如果每次都调用API去申请内存，不仅更慢，而且更容易产生内存碎片从而降低系统运行效率。很多时候，一个简单的对象池就能在一定程度上缓解这个问题。（相比于内存池，对象池整体也更为简单。内存池的讨论[参考这里](https://www.zhihu.com/question/25527491/answer/56571062)）
 
 🟡TODO: 对象池的设计和注意点
 
@@ -153,7 +153,7 @@ public class FSMManager : USingleton<FSMManager>
                 }
                 else
                 {
-                    ZLog.error(fsm.ToString(), "should stop before delete from list");
+                    Log.error(fsm.ToString(), "should stop before delete from list");
                 }
             }
         }
@@ -180,10 +180,10 @@ public class FSMManager : USingleton<FSMManager>
 
 ### 状态机的实现
 状态机（`FSM<T,M>`）对外暴露启动/终止、暂停/恢复、更新等接口，以及消息驱动和状态转移框架逻辑。这里有四点值得一说的设计：
-- 泛型的使用。对于不同类型的角色对象，其状态种类和可以接受的消息种类应当是相互隔离的。因此，这里用`T`表示状态机所属的角色类。用`M`表示该状态机接收的消息类型。
-- 统一的接口。由于使用了泛型类，为了能将不同类型的状态机统一管理，定义了接口`IFSM`。
-- 全局状态。若存在一种状态，可以从其他任何状态转变而来，那么为了避免繁冗，可以将其从状态转换图中独立出来，称为全局状态，也可以理解为角色的第二状态。这在“死亡”逻辑中很有用：不论在何种状态下，一旦血量小于等于0，则执行死亡逻辑。
-- 是否立即状态切换。当触发了状态切换的条件时，除了立即切换状态，也可以等到该逻辑帧结束后下一逻辑帧开始前切换状态。后者的合理之处在于：同一帧内某个对象暴露给外界所有其他对象的状态是相同的。以敌人碰到子弹后死亡为例，如果子弹立即切换状态并销毁，那么轮到敌人处理碰撞逻辑时，将访问不到子弹对象的一些属性。但下一帧切换状态也会让某些逻辑变得不再直观。总之，是否立即进行状态切换需要根据玩法进行权衡。
+- **泛型的使用**。对于不同类型的角色对象，其状态种类和可以接受的消息种类应当是相互隔离的。因此，这里用`T`表示状态机所属的角色类。用`M`表示该状态机接收的消息类型。
+- **统一的接口**。由于使用了泛型类，为了能将不同类型的状态机统一管理，定义了接口`IFSM`。
+- **全局状态**。若存在一种状态，可以从其他任何状态转变而来，那么为了避免繁冗，可以将其从状态转换图中独立出来，称为全局状态，也可以理解为角色的第二状态。这在“死亡”逻辑中很有用：不论在何种状态下，一旦血量小于等于0，则执行死亡逻辑。
+- **是否立即状态切换**。当触发了状态切换的条件时，除了立即切换状态，也可以等到该逻辑帧结束后下一逻辑帧开始前切换状态。后者的合理之处在于：同一帧内某个对象暴露给外界所有其他对象的状态是相同的。以敌人碰到子弹后死亡为例，如果子弹立即切换状态并销毁，那么轮到敌人处理碰撞逻辑时，将访问不到子弹对象的一些属性。但下一帧切换状态也会让某些逻辑变得不再直观，反而因此掣肘。总之，是否立即进行状态切换需要根据玩法进行权衡。
 
 ```cs
 /// <summary>
@@ -283,25 +283,25 @@ public class FSM<T, M> : IFSM where T : class where M : struct
     {
         if (!this.IsRunning)
         {
-            ZLog.error("Cannot change state, FSM is not runnning");
+            Log.error("Cannot change state, FSM is not runnning");
             return;
         }
 
         if (newState == null)
         {
-            ZLog.error(owner, "cannot change state to null");
+            Log.error(owner, "cannot change state to null");
             return;
         }
 
         if (this.curState == null)
         {
-            ZLog.error(owner, "Fatal error: curState is null, newState=", newState);
+            Log.error(owner, "Fatal error: curState is null, newState=", newState);
             return;
         }
 
         if (newState.GetType().Equals(this.curState.GetType()))
         {
-            ZLog.warn(this.owner, "cannot change to the same state:", this.curState);
+            Log.warn(this.owner, "cannot change to the same state:", this.curState);
             return;
         }
 

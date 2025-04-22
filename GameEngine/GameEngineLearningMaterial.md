@@ -35,10 +35,8 @@
 
 #### 沧海遗珠
 - `Cherno`： 
-  - [Game Engine 系列视频](https://www.youtube.com/playlist?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT)，
-  - [OpenGL 系列视频](https://www.youtube.com/watch?v=W3gAzLwfIP0&list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2&index=1)，
-  - [C++ 系列视频](https://www.youtube.com/playlist?list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb)
-- `Milo Yip`： [游戏关键技术整理](http://gamextech.org/)
+  - [Game Engine 系列视频](https://www.youtube.com/playlist?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT)
+  - [OpenGL 系列视频](https://www.youtube.com/watch?v=W3gAzLwfIP0&list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2&index=1)
 - `Morgan McGuire`： [Graphic Programming Project](http://graphicscodex.com/projects/projects/)
 - `Inigo Quilez`：（ShaderToy创始人之一），[图形学文集](https://www.iquilezles.org/www/index.htm)
 - 知乎专栏
@@ -49,12 +47,9 @@
   - `文礼`: [高品质游戏开发](https://www.zhihu.com/column/c_119702958)
 
 #### UE4 专题
-- 《大象无形·虚幻引擎程序设计浅析》
 - [Unreal Engine doc](https://docs.unrealengine.com/en-US/index.html)
-- [为Unity开发者准备的虚幻引擎4指南](https://docs.unrealengine.com/zh-CN/Basics/UnrealEngineForUnityDevs/index.html)
 - `大钊` [Inside UE4](https://www.zhihu.com/column/insideue4)
 - `Jerish` [Exploring in UE4](https://www.zhihu.com/column/c_164452593)
-- [风恋残雪的游戏编程](https://www.zhihu.com/column/c_154899362)
 - `quabqi` [手摇虚幻引擎](https://zhuanlan.zhihu.com/p/362377941)
 
 #### 工具
