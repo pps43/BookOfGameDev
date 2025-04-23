@@ -8,20 +8,25 @@
 
 读书笔记的门槛最低，缺点也有二。一是容易演变成抄书式总结，二是读书笔记一般按信息源分篇，而不是按专题进行整合，不便横向比对。另外，对他人来说，阅读原著可能更有价值。
 
-文集介于二者之间，能更切实地完成“传播有价值的分享、输出知识的总结、提炼实践和经验”的初衷。这本文集将尽个人努力持续迭代，不过有些文章写作日期比较早，如有过时和错漏之处，欢迎提PR到这个[repo](https://github.com/pps43/BookOfGameDev)。另外有时用英文写作会更准确更快速，请允许我同时使用两种主要语言。
+文集介于二者之间，能更切实地完成“传播有价值的分享、输出知识的总结、提炼实践和经验”的初衷。这本文集将尽个人努力持续迭代，不过有些文章写作日期比较早，如有过时和错漏之处，欢迎提PR到这个[repo](https://github.com/pps43/BookOfGameDev)。
 
-于2016.3
+最后，为了写作的方便，请允许我同时使用中文和英文。
+
+——始于2016.3
 
 ---
+Hello,
 
-下面是`部分`推荐文章（从新到旧）：
-- [Unity拥抱CoreCLR](GamePlay/Unity/Runtime/MonoOrCLR.md)
-- [关于游戏引擎的认知](GameEngine/AboutGameEngine.md)
-- [C# struct灵魂拷问](DotNet/dotNetStructQuestions.md)
-- [深入.NET垃圾回收(GC)机制](DotNet/dotNetGC.md)
-- [介绍一个Overdraw分析工具](GamePlay/Unity/PerformanceOptimizition/CreateUsefulOverdrawIndicator.md)
-- [深入Unity协程](GamePlay/Unity/Coroutine/DiveIntoUnityCoroutine.md)
-- [深入Unity资源](GamePlay/Unity/Asset/DiveIntoUnityAsset.md)
-- [深入Unity序列化](GamePlay/Unity/Asset/DiveIntoUnitySerialization.md)
-- [浅析UGUI渲染机制](GamePlay/Unity/UGUI/UGUIRenderSystem.md)
-- [必备设计模式](GamePlay/Pattern/CommonPatternsCollection.md)
+Game development is a field that connects many of my interested areas. Here, I mainly document insights, knowledge, and practices from my journey in game development, hoping to be helpful to more people.  
+
+Should this become a book, a notebook, or a collection of essays?  
+
+A book would have a clearer structure, but it has two drawbacks. First, it could easily turn into lengthy content just for the sake of comprehensiveness. Second, as my focus shifts, I’d need to frequently rethink how to reorganize the table of contents. Both require a massive amount of time, making it daunting to even start.  
+
+A notebook has the lowest barrier to entry, but it also has two issues. First, it might end up as a mere summary of copied book content. Second, notes are usually organized by source rather than by topic, making cross-comparisons inconvenient. Additionally, for others, reading the original books might be more valuable.  
+
+A collection of essays is a balanced choice, better fulfilling the original intent: "sharing valuable insights, summarizing knowledge, and refining practices and experiences." This collection will be continuously updated to the best of my ability, though some articles were written earlier—if you spot outdated or incorrect information, feel free to submit a PR to this repo.  
+
+Finally, for the sake of writing convenience, please allow me to use both Chinese and English.
+
+Since 2016.3

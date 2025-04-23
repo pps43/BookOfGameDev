@@ -5,10 +5,8 @@
 # 背景
 - PhysX引擎中，场景内的Actor之间并没有父子层级关系，仅有的层级是Shape可以绑定到Actor作为子节点。
 - PhysX引擎中并没有`Scale`的概念，即`PxTransform`只包含`Position`和`Rotation`，而大小只反映在最底层`Shape`的尺寸上（比如球形碰撞盒有半径这个属性）。所以设置缩放比例的实现方式是改变物体尺寸。
+- Actor下可以有若干Shape，这里只讨论一个Shape。增加属性`Actor.Scale`，修改该属性时要保证`Shape.Dimension`的正确性。
 
-# 问题的出现
-
-Actor下可以有若干Shape，这里只讨论一个Shape。增加属性`Actor.Scale`，修改该属性时要保证`Shape.Dimension`的正确性。
 ```mermaid
 classDiagram
 direction LR
@@ -26,11 +24,10 @@ class Shape {
 Actor o-- Shape
 ```
 
-经实践，更方便的方式是记录Shape的初始尺寸`OriginalDimension`，然后乘上改变`Actor.Scale`后对应Shape的“缩放系数”。而不是为了节省存储通过`Actor.Scale`改变前后的比例来计算。总之，问题简化为实现`GetShapeScale()`。
-
 ```cpp
 Shape.Dimension = Shape.OriginalDimension * GetShapeScale();
 ```
+问题简化为实现`GetShapeScale()`。
 
 当Shape相对Actor没有旋转，即`Shape.LocalRotation = (0,0,0,1)`时，容易发现：
 ```cpp
@@ -38,6 +35,8 @@ PxVec3 GetShapeScale() {
     return actor.Scale;
 }
 ```
+
+# 问题
 但是当同时存在旋转和非均匀缩放呢？简单来说，当`Actor.Scale=(1,4,1)`，而Shape绕z轴转了90度，那么预期的结果应该是`(4,1,1)`，即Shape相对于自己在横向上扩大到2倍。若绕z轴转了45度，那么预期的结果是`(2,2,1)`。要如何达到这种效果呢？
 
 # 似是而非的算法
@@ -225,30 +224,6 @@ $$
 M_{world}=T_{world}R_{world}S_{world}
 $$
 
-
-
-# 问题的终结
-
-回到最初的问题上来，对Actor设置缩放时要更新所属Shape的尺寸，为此要实现的`GetShapeScale()`完整版：
-
-```cpp
-Shape.Dimension = Shape.OriginalDimension * GetShapeScale();
-
-PhysXVec3 GetShapeScale() {
-    PxQuat worldRot = actor.Rotation * shapeTransform.q;
-    PxMat33 inverseWorldRotMat = PxMat33(worldRot.getConjugate());
-    PxMat33 localRotMat = PxMat33(shapeTransform.q);
-    PxMat33 actorRotMat = PxMat33(actor.Rotation);
-    PxMat33 actorScaleMat = PxMat33().createDiagonal(actor.Scale);
-
-    PxMat33 worldRotAndScaleMat = actorRotMat * actorScaleMat * localRotMat /* * localScaleMat*/; // localScaleMat is always Identity Matrix, so we omit it
-    PxMat33 worldScaleMat = inverseWorldRotMat * worldRotAndScaleMat;
-    PhysXVec3 worldscale = PhysXVec3(worldScaleMat[0][0], worldScaleMat[1][1], worldScaleMat[2][2]);
-
-    // can have extra logic to make sure all values in worldscale are non-zero
-    return worldscale; 
-}
-```
 
 # 额外的讨论
 已知正确的算法是：
