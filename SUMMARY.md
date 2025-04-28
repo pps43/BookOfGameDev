@@ -5,7 +5,7 @@
 ## Math
 * Number
     * Float IEEE754对确定性的影响
-    * Pairing Function及其用途
+    * [Pairing Function及其用途](Math/PairingFunction.md)
 * Vector and Matrix
     * TRS基础概念
     * [LossyScale深入分析](Math/LossyScale.md)
@@ -25,13 +25,17 @@
   * [.NET垃圾回收机制](Programming/CSharp/dotNetGC.md)
 
 * Go
-    * 基础特性
-    * interface与正确的判空
-    * interface与模拟多态
-    * 如何集成c++库
+    * [基础特性](Programming/Golang/Golang.md)
+    * 如何正确的判空interface
+    * 如何用interface模拟多态
+    * 如何定制json序列化
+    * 如何安全在循环中删除元素
+    * 如何安全关闭channel
+    * 如何集成c++库(cgo+swig)
+    * 如何性能测试(benchmark, pprof)
 
 * Lua
-    * [基础特性](Programming/Lua/LuaNotes.md)
+    * [基础特性](Programming/Lua/Lua.md)
 
 
 ## General Game Development
@@ -46,7 +50,7 @@
     * [物理同步](GameDev/Network/NetworkedPhysics/IntroOfNetworkedPhysics.md)
 
 * Physics
-    * PhysX基本概念
+    * [PhysX基本概念](GameDev/Physics/PhysXBasics.md)
     * PhysX增加Scale支持
     * [PhysX场景查询](GameDev/Physics/PhysXSceneQuery.md)
     * PhysX碰撞检测

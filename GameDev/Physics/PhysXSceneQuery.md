@@ -1,20 +1,14 @@
-# PhysX Series: Scene Query
+# PhysX: Scene Query
 
-> `PhysX Series` 这个系列主要记录一些最近在游戏中使用Nvdia PhysX 3.4物理引擎的一些经验。本文主要介绍场景查询的一些内部机制和使用方法。
-
-# Prerequisites
-
-官方资料：
+> 本文以PhysX 3.4物理引擎为例，介绍场景查询（Raycast, Sweep, Overlap）的一些内部机制和使用方法。
 > - PhysX 3.4 [source code](https://github.com/pps43/PhysX-3.4)
-> - Download [PhysXGuide.chm](https://github.com/pps43/PhysX-3.4/raw/master/PhysX_3.4/Documentation/PhysXGuide.chm)
+> - PhysX 3.4 [PhysXGuide.chm](https://github.com/pps43/PhysX-3.4/raw/master/PhysX_3.4/Documentation/PhysXGuide.chm)
 
+# Scene
 
 A `Scene` in PhysX engine is a container of objects in a hierachical manner.
 
 ```mermaid
----
-title: Scene Hierachy
----
 classDiagram
 direction LR
 
@@ -56,7 +50,7 @@ shape o--material
 
 There are only position and rotation in `GlobalPose` and `LocalPose`, no "scale". Scale only reflects on geometry's actual size.
 
-# PhysX Scene Query
+# Scene Query
 
 Three kinds of scene query:
 - raycast
@@ -74,13 +68,13 @@ BP(Broad Phase) --> prefilter --> MP(Mid phase) --> NP(Narrow Phase) --> postfil
 
 ```
 
-- Broad phase traverses the global scene spatial partitioning structure to find the candidates for mid and narrow phases.
-- midphase traverses the triangle mesh and heightfield internal culling structures, to find a smaller subset of the triangles in a mesh reported by the broad phase. 
-- Narrow phase performs exact intersection tests
-- Pre-filtering happens before midphase and narrow phase and allows shapes to be efficiently discarded before the potentially expensive exact collision test.
-- Post-filtering happens after the narrow phase test and can therefore use the results of the test (such as PxRaycastHit.position) to determine whether a hit should be discarded or not.
+- **Broad phase** traverses the global scene spatial partitioning structure to find the candidates for mid and narrow phases.
+- **Midphase** traverses the triangle mesh and heightfield internal culling structures, to find a smaller subset of the triangles in a mesh reported by the broad phase. 
+- **Narrow phase** performs exact intersection tests
+- **Pre-filtering** happens before midphase and narrow phase and allows shapes to be efficiently discarded before the potentially expensive exact collision test.
+- **Post-filtering** happens after the narrow phase test and can therefore use the results of the test (such as PxRaycastHit.position) to determine whether a hit should be discarded or not.
 
-# More on `traversal`
+# Data Structure for `traversal`
 
 A scene uses two query structures, one for "static" objects (`PxRigidStatic`), one for "dynamic" objects (`PxRigidBody`). Each structure can use different culling algorithms, see `PxPruningStructureType`.
 
@@ -91,11 +85,11 @@ A scene uses two query structures, one for "static" objects (`PxRigidStatic`), o
 |eSTATIC_AABB_TREE|Based on grid and tree. Incremental rebuild when changed, unless by force. Choose this if frequently add/remove geometry, at the cost of higher memory|
 
 
-# More on `prefilter` and `postfilter`
+# Use `prefilter` and `postfilter`
 
 To make `prefilter` works, there are 3 steps.
 
-- first attach data (`PxFilterData`) for on shape.  It has four 32bit words to hold custom data, e.g., use `word0` as layer of this shape.
+- Step 1. Attach data (`PxFilterData`) for on shape.  It has four 32bit words to hold custom data, e.g., use `word0` as layer of this shape.
 
 Here is an example:
 ```cpp
@@ -105,7 +99,7 @@ queryFilter.word0 = layer;
 shape->setQueryFilterData(queryFilter);
 ```
 
-- second define callback function for `prefilter`. See `PxQueryFilterCallback`. The logic is totally depend on yourself, just return `PxQueryHitType` to tell if this shape can pass.
+- Step 2. Define callback function for `prefilter`. See `PxQueryFilterCallback`. The logic is totally depend on yourself, just return `PxQueryHitType` to tell if this shape can pass.
 
 |PxQueryHitType|Explanation|
 |--|--|
@@ -155,7 +149,7 @@ PxQueryHitType::Enum PhysxQueryFilterCallback::postFilter(const PxFilterData& fi
 }
 ```
 
-- third step is to add `PxQueryFilterData` when query
+-  Step 3. Add `PxQueryFilterData` when query
 
 `PxQueryFilterData` has two fields:
 
