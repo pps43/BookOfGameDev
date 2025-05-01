@@ -26,10 +26,10 @@
 
 * Go
     * [基础特性](Programming/Golang/Golang.md)
-    * 如何正确的判空interface
-    * 如何用interface模拟多态
-    * 如何定制json序列化
-    * 如何安全在循环中删除元素
+    * [如何正确的判空interface](Programming/Golang/GolangCheckNil.md)
+    * [如何用interface模拟多态](Programming/Golang/GolangMockPolymorphysm.md)
+    * [如何定制json序列化](Programming/Golang/GolangJson.md)
+    * [如何安全在循环中删除元素](Programming/Golang/GolangRemoveItemInLoop.md)
     * 如何安全关闭channel
     * 如何集成c++库(cgo+swig)
     * 如何性能测试(benchmark, pprof)
