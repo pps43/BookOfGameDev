@@ -60,6 +60,9 @@
     * 物理同步
     * 物理破坏
 
+* Animation
+    * [角色动画的核心：从 IK 重定向到骨骼的本质](GameDev/Animation/IKRetargetingAndBoneSystem.md)
+
 * Design Pattern
     * [常用设计模式](GameDev/DesignPattern/CommonPatternsCollection.md)
     * [MVP 架构模式](GameDev/DesignPattern/MVP.md)
