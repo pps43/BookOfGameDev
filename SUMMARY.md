@@ -2,6 +2,10 @@
 
 * [你好](README.md)
 
+## AI
+* Coding AI
+    * [Codex Best Practice](AI/CodingAI/CodexBestPractice.md)
+
 ## Math
 * Number
     * Float IEEE754对确定性的影响

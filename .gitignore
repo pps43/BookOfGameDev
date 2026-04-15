@@ -16,3 +16,6 @@ _book
 *.pdf
 .vscode/settings.json
 .DS_Store
+
+# Codex temp
+.codex_tmp
